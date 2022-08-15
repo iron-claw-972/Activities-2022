@@ -8,6 +8,9 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
+import ctre_shims.PhoenixMotorControllerGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -16,18 +19,15 @@ import frc.robot.constants.Constants;
 
 public class Drivetrain extends SubsystemBase {
 
-  TalonSRX leftMotor1 = new TalonSRX(Constants.drive.leftMotorPorts[0]);
-  TalonSRX leftMotor2 = new TalonSRX(Constants.drive.leftMotorPorts[1]);
-  
-  TalonSRX rightMotor1 = new TalonSRX(Constants.drive.rightMotorPorts[0]);
-  TalonSRX rightMotor2 = new TalonSRX(Constants.drive.rightMotorPorts[1]);
+  //TODO 1
+  WPI_TalonFX leftMotor1;
+  WPI_TalonFX rightMotor1;
 
   /**
    * Creates a new DriveSubsystem.
    */
   public Drivetrain() {
-    leftMotor2.set(ControlMode.Follower, Constants.drive.leftMotorPorts[0]);
-    rightMotor2.set(ControlMode.Follower, Constants.drive.rightMotorPorts[0]);
+    
   }
 
   /**
@@ -48,7 +48,6 @@ public class Drivetrain extends SubsystemBase {
    * @param turn the commanded turn rotation
    */
   public void arcadeDrive(double throttle, double turn) {
-    leftMotor1.set(ControlMode.PercentOutput, throttle + turn);
-    rightMotor1.set(ControlMode.PercentOutput, throttle - turn);
+    
   }
 }
