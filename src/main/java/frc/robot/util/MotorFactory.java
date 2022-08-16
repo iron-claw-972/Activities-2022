@@ -14,7 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.constants.Constants;
 
-public class ControllerFactory {
+public class MotorFactory {
 
   private static int talonSRXDefaultContinuousLimit = 38;
   private static int kTalonSRXDefaultPeakLimit = 45;
