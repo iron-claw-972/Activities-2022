@@ -41,10 +41,14 @@ public class Robot extends TimedRobot {
     Driver.configureControls();
     Operator.configureControls();
 
+    // TODO 2.1: replace the tank drive command with the arcade drive command
+    // TODO 2.2: replace the arcade drive command with your new command
+    // TODO 2.4: replace the command from 2.2 with your new command
     drive.setDefaultCommand(
       new RunCommand(() -> drive.tankDrive(Driver.getRawLeft(), Driver.getRawRight())
       , drive)
     );
+
   }
 
   /**
