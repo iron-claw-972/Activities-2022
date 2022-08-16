@@ -30,7 +30,11 @@ public class Drivetrain extends SubsystemBase {
    * Creates a new DriveSubsystem.
    */
   public Drivetrain() {
-    
+    // TODO 1: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones.
+    // You can also invert the motors, you often need to invert one side to make the robot drive since the motors on one side are flipped.
+    // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors! Do not only invert one motor on a side or it may mesh against the other motor
+    // motor.setInverted();
+    // motor.follow(mainMotor);
   }
 
   /**
