@@ -1,5 +1,3 @@
-//TODO 2.1: make a copy of this to run arcade drive method
-
 package frc.robot.commands;
 
 import frc.robot.subsystems.ExampleSubsystem;

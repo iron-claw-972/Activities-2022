@@ -10,6 +10,8 @@ public class Driver {
   private static GameController driver = new GameController(Constants.oi.kDriverJoy);
 
   public static void configureControls() {
+
+    // TODO 3.1: Change the DoNothing() Command to one of your commands
     driver.get(Button.A).whenPressed(new DoNothing());
   }
 
