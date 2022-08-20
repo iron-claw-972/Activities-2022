@@ -47,6 +47,7 @@ public class Robot extends TimedRobot {
     drive.setDefaultCommand(
       new RunCommand(() -> drive.tankDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
     );
+    // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
 
   }
 
