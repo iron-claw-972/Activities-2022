@@ -14,9 +14,9 @@ public class SideOfDrivetrain extends SubsystemBase {
 
   // TODO 2.3: add motors/ motor group
 
-  public SideOfDrivetrain() {
-    // TODO 2.3: you could make 2 subsystems one for the left and one for the right or your could use a true false constructor to set if it is left or right becuse they are so familiar
-    // TODO 2.3: set up configuration of motors or perhaps the  
+  public SideOfDrivetrain(boolean isLeft) {
+    // TODO 2.3: use the boolean isLeft to set if it is left or right
+    // TODO 2.3: set up configuration of motors/encoders
   }
 
   // TODO 2.3: add a function or more to control the drivetrain
