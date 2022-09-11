@@ -23,10 +23,11 @@ public class Drivetrain extends SubsystemBase {
   // the ID should be set in the DriveConstants.java file, here you can access it like Constants.drive.kRightMotor1
   WPI_TalonFX leftMotor1;
   WPI_TalonFX rightMotor1;
+  // TODO 1.1 if you don't have a second motor skip the second motors
   WPI_TalonFX leftMotor2;
   WPI_TalonFX rightMotor2;
 
-  // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. 
+  // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't acutaly do this but you should still learn about motor controller groups)
   PhoenixMotorControllerGroup leftMotors;
   PhoenixMotorControllerGroup rightMotors; 
 
@@ -47,6 +48,9 @@ public class Drivetrain extends SubsystemBase {
 
     // TODO 1.2: Change all of the setup above. Motors in a group automatically follow each other so do not set them as followers. You can set them inverted as such:
     // leftMotors.setInverted(true);
+
+    
+    // TODO 4.3: Add the PID you made to shuffle board
   }
 
   @Override

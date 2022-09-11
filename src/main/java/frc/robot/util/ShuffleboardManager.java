@@ -32,6 +32,7 @@ public class ShuffleboardManager {
 
   public void chooserUpdate() {
     m_autoCommand.addOption("Do Nothing", new PrintCommand("This will do nothing!"));
+    // TODO 4.3: add your autonomus command to the auto command chooser
   }
 
   public void loadCommandSchedulerShuffleboard(){
