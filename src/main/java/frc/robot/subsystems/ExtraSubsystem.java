@@ -10,7 +10,7 @@ public class ExtraSubsystem extends SubsystemBase {
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
 
   public ExtraSubsystem() {
-    // TODO 4.3: Add the PID you made to shuffleboard
+    // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardMangaer class)
   }
 
   public void periodic() {

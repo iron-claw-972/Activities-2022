@@ -23,6 +23,7 @@ public class ShuffleboardManager {
 
     chooserUpdate();
 
+    // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardMangaer class)
     m_autoTab.add("Auto Chooser", m_autoCommand);
   }
 
@@ -32,7 +33,7 @@ public class ShuffleboardManager {
 
   public void chooserUpdate() {
     m_autoCommand.addOption("Do Nothing", new PrintCommand("This will do nothing!"));
-    // TODO 4.3: add your autonomus command to the auto command chooser
+    // TODO 4.3: add your autonomous command to the auto command chooser
   }
 
   public void loadCommandSchedulerShuffleboard(){

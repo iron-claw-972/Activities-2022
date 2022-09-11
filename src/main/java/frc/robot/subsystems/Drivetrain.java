@@ -50,7 +50,7 @@ public class Drivetrain extends SubsystemBase {
     // leftMotors.setInverted(true);
 
     
-    // TODO 4.3: Add the PID you made to shuffle board
+    // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardMangaer class)
   }
 
   @Override
