@@ -20,14 +20,14 @@ import frc.robot.util.MotorFactory;
 public class Drivetrain extends SubsystemBase {
 
   // TODO 1.1: Create Motor Objects using MotorFactory.createTalonFX(int id)
-  // the ID should be set in the DriveConstants.java file, here you can access it like Constants.drive.kRightMotor1
+  // the ID should be set in the DriveConstants.java file, here you can access it like Constants.drive.kRightMotor
   WPI_TalonFX leftMotor1;
   WPI_TalonFX rightMotor1;
   // TODO 1.1 if you don't have a second motor skip the second motors
   WPI_TalonFX leftMotor2;
   WPI_TalonFX rightMotor2;
 
-  // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't acutaly do this but you should still learn about motor controller groups)
+  // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't actually do this but you should still learn about motor controller groups)
   PhoenixMotorControllerGroup leftMotors;
   PhoenixMotorControllerGroup rightMotors; 
 
@@ -38,9 +38,9 @@ public class Drivetrain extends SubsystemBase {
    * Creates a new DriveSubsystem.
    */
   public Drivetrain() {
-    // TODO 1.1: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones.
+    // TODO 1.1: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones, if you have them.
     // You can also invert the motors, you often need to invert one side to make the robot drive since the motors on one side are flipped.
-    // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors! Do not only invert one motor on a side or it may mesh against the other motor
+    // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors!
     // motor.setInverted(true);
     // motor.follow(mainMotor);
 
@@ -50,7 +50,7 @@ public class Drivetrain extends SubsystemBase {
     // leftMotors.setInverted(true);
 
     
-    // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardMangaer class)
+    // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
   }
 
   @Override
