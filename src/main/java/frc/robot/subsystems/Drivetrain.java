@@ -21,8 +21,8 @@ public class Drivetrain extends SubsystemBase {
 
   // TODO 1.1: Create Motor Objects using MotorFactory.createTalonFX(int id)
   // the ID should be set in the DriveConstants.java file, here you can access it like Constants.drive.kRightMotor
-  WPI_TalonFX leftMotor1;
-  WPI_TalonFX rightMotor1;
+  WPI_TalonFX leftMotor1 = MotorFactory.createTalonFX(2);
+  WPI_TalonFX rightMotor1 = MotorFactory.createTalonFX(1);
   // TODO 1.1 if you don't have a second motor skip the second motors
   WPI_TalonFX leftMotor2;
   WPI_TalonFX rightMotor2;
@@ -38,6 +38,7 @@ public class Drivetrain extends SubsystemBase {
    * Creates a new DriveSubsystem.
    */
   public Drivetrain() {
+    
     // TODO 1.1: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones, if you have them.
     // You can also invert the motors, you often need to invert one side to make the robot drive since the motors on one side are flipped.
     // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors!
