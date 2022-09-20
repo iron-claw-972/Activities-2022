@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import ctre_shims.PhoenixMotorControllerGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
 import frc.robot.util.MotorFactory;
@@ -48,7 +49,7 @@ public class Drivetrain extends SubsystemBase {
     // rightMotor2.follow(rightMotor1);
 
     // TODO 1.2: Change all of the setup above. Motors in a group automatically follow each other so do not set them as followers. You can set them inverted as such:
-    leftMotors.setInverted(true);
+    RightMotors.setInverted(true);
         
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
   }
