@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.controls.Driver;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -28,7 +29,7 @@ public class ArcadeDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    m_drive.arcadeDrive(0.25*Driver.getRawThrottleValue(), -0.25*Driver.getRawTurnValue());
     // TODO 2.1: Call the arcade drive function written in Drivetrain here. This function is called repeatedly so it will constantly run while the command is being executed 
 
   }

@@ -44,7 +44,8 @@ public class Drivetrain extends SubsystemBase {
     // motor.setInverted(true);
     // motor.follow(mainMotor);
 
-
+    leftMotors.setInverted(false);
+    rightMotors.setInverted(true);
 
     // TODO 1.2: Change all of the setup above. Motors in a group automatically follow each other so do not set them as followers. You can set them inverted as such:
     // leftMotors.setInverted(true);
@@ -68,8 +69,10 @@ public class Drivetrain extends SubsystemBase {
    */
   public void tankDrive(double leftPower, double rightPower) {
     // TODO 1.2: Instead of setting motors set the MotorControllerGroup, using motorGroup.set(speed)
-    leftMotors.set(leftPower);
-    rightMotors.set(rightPower);
+    double a = 0.5;
+    leftMotors.set(a*leftPower);
+    rightMotors.set(a*rightPower);
+  }
 
   /**
    * Drives the robot using arcade controls.
@@ -80,6 +83,8 @@ public class Drivetrain extends SubsystemBase {
   public void arcadeDrive(double throttle, double turn) {
     
     // TODO 2.1: write an arcade drive here
+    leftMotors.set(throttle+turn);
+    rightMotors.set(throttle-turn);
   }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()

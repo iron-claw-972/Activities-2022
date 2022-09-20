@@ -1,15 +1,21 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
-public class ExtraSubsystem extends SubsystemBase {
+import ctre_shims.PhoenixMotorControllerGroup;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.constants.Constants;
+
+public class StraightDriveSubSystem extends SubsystemBase {
   // TODO 2.3: Rename the subsystem
   // TODO 2.3: make motors and/or sensors 
-  
+  WPI_TalonFX leftMotor1 = new WPI_TalonFX(Constants.drive.kLeftMotor);
+  WPI_TalonFX rightMotor1= new WPI_TalonFX(Constants.drive.kRightMotor);
+  PhoenixMotorControllerGroup motors = new PhoenixMotorControllerGroup(leftMotor1, rightMotor1);
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
 
-  public ExtraSubsystem() {
+  public StraightDriveSubSystem() {
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
   }
 
@@ -21,6 +27,10 @@ public class ExtraSubsystem extends SubsystemBase {
 
 
   // TODO 2.3: add some functions that you might use, for example functions to set the motor power
+
+public void driveStraight(double throttle){
+  motors.set(throttle);
+}
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
 }
