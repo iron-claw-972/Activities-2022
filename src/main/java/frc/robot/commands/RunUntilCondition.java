@@ -17,6 +17,7 @@ public class RunUntilCondition extends CommandBase {
 
   public void initialize() {
     // TODO 2.2 Put the stuff that should run at the start, usually to prep for what is in execute
+    m_drive.arcadeDrive(1, 1);
   }
 
   public void execute() {
