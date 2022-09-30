@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import ctre_shims.PhoenixMotorControllerGroup;
@@ -42,7 +44,7 @@ public class Drivetrain extends SubsystemBase {
     // TODO 1.1: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones, if you have them.
     // You can also invert the motors, you often need to invert one side to make the robot drive since the motors on one side are flipped.
     // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors!
-    leftMotor1.setInverted(true);
+    rightMotors.setInverted(true);
     //leftMotor2.follow(leftMotor1);
   //rightMotor2.follow(rightMotor2);
   
@@ -86,12 +88,10 @@ public class Drivetrain extends SubsystemBase {
    */
   public void arcadeDrive(double throttle, double turn) {
     // TODO 2.1: write an arcade drive here
-    leftMotor1.set(ControlMode.PercentOutput, throttle);
-    rightMotor1.set(ControlMode.PercentOutput, throttle);
-    leftMotor1.turn(turn);
-    rightMotor1.turn(turn);
+     leftMotors.set((throttle - turn)*0.5);
+     rightMotors.set((throttle + turn)*0.5);
+   } 
 
-  }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
 }
