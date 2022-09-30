@@ -28,8 +28,8 @@ public class Drivetrain extends SubsystemBase {
   WPI_TalonFX rightMotor2;
 
   // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't actually do this but you should still learn about motor controller groups)
-  PhoenixMotorControllerGroup leftMotors;
-  PhoenixMotorControllerGroup rightMotors; 
+  PhoenixMotorControllerGroup leftMotors = new PhoenixMotorControllerGroup(leftMotor1, leftMotor2);
+  PhoenixMotorControllerGroup rightMotors= new PhoenixMotorControllerGroup(rightMotor1, rightMotor2);
 
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
@@ -42,13 +42,17 @@ public class Drivetrain extends SubsystemBase {
     // TODO 1.1: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones, if you have them.
     // You can also invert the motors, you often need to invert one side to make the robot drive since the motors on one side are flipped.
     // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors!
-    // motor.setInverted(true);
-    // motor.follow(mainMotor);
+    leftMotor1.setInverted(true);
+    //leftMotor2.follow(leftMotor1);
+  //rightMotor2.follow(rightMotor2);
+  
+    
 
 
 
     // TODO 1.2: Change all of the setup above. Motors in a group automatically follow each other so do not set them as followers. You can set them inverted as such:
-    // leftMotors.setInverted(true);
+    //leftMotors.setInverted(true);
+    //rightMotors.follow(leftMotors);
 
     
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
@@ -69,8 +73,9 @@ public class Drivetrain extends SubsystemBase {
    */
   public void tankDrive(double leftPower, double rightPower) {
     // TODO 1.2: Instead of setting motors set the MotorControllerGroup, using motorGroup.set(speed)
-    leftMotor1.set(ControlMode.PercentOutput, leftPower);
-    rightMotor1.set(ControlMode.PercentOutput, rightPower);
+    leftMotors.set(leftPower);
+    rightMotors.set(rightPower);
+   
   }
 
   /**
@@ -81,6 +86,11 @@ public class Drivetrain extends SubsystemBase {
    */
   public void arcadeDrive(double throttle, double turn) {
     // TODO 2.1: write an arcade drive here
+    leftMotor1.set(ControlMode.PercentOutput, throttle);
+    rightMotor1.set(ControlMode.PercentOutput, throttle);
+    leftMotor1.turn(turn);
+    rightMotor1.turn(turn);
+
   }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
