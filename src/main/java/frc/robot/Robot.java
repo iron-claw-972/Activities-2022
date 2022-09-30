@@ -9,11 +9,14 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.MoveDist;
 import frc.robot.commands.RunFor5Seconds;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.StraightDriveSubSystem;
 import frc.robot.util.ShuffleboardManager;
 
 /**
@@ -102,7 +105,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     drive.setDefaultCommand(
-      new RunFor5Seconds(drive)
+      new SequentialCommandGroup(
+        new MoveDist(new StraightDriveSubSystem(), 1000),
+        new RunFor5Seconds(drive)
+      )
     );
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to

@@ -16,6 +16,7 @@ public class StraightDriveSubSystem extends SubsystemBase {
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
 
   public StraightDriveSubSystem() {
+    rightMotor1.setInverted(true);
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
   }
 
@@ -30,6 +31,13 @@ public class StraightDriveSubSystem extends SubsystemBase {
 
 public void driveStraight(double throttle){
   motors.set(throttle);
+}
+public double getDist(){
+  return leftMotor1.getSelectedSensorPosition()/2+rightMotor1.getSelectedSensorPosition()/2;
+}
+public void zeroMotors(){
+  leftMotor1.setSelectedSensorPosition(0);
+  rightMotor1.setSelectedSensorPosition(0);
 }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
