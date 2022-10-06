@@ -21,15 +21,16 @@ public class Drivetrain extends SubsystemBase {
 
   // TODO 1.1: Create Motor Objects using MotorFactory.createTalonFX(int id)
   // the ID should be set in the DriveConstants.java file, here you can access it like Constants.drive.kRightMotor
-  WPI_TalonFX leftMotor1;
-  WPI_TalonFX rightMotor1;
+  WPI_TalonFX leftMotor1 = MotorFactory.createTalonFX(Constants.drive.kLeftMotor);
+  WPI_TalonFX rightMotor1 = MotorFactory.createTalonFX(Constants.drive.kRightMotor);
+
   // TODO 1.1 if you don't have a second motor skip the second motors
   WPI_TalonFX leftMotor2;
   WPI_TalonFX rightMotor2;
 
   // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't actually do this but you should still learn about motor controller groups)
-  PhoenixMotorControllerGroup leftMotors;
-  PhoenixMotorControllerGroup rightMotors; 
+  PhoenixMotorControllerGroup leftMotors = new PhoenixMotorControllerGroup(leftMotor1);
+  PhoenixMotorControllerGroup rightMotors = new PhoenixMotorControllerGroup(rightMotor1); 
 
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
@@ -48,7 +49,7 @@ public class Drivetrain extends SubsystemBase {
 
     // TODO 1.2: Change all of the setup above. Motors in a group automatically follow each other so do not set them as followers. You can set them inverted as such:
     // leftMotors.setInverted(true);
-
+    
     
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
   }
@@ -80,6 +81,8 @@ public class Drivetrain extends SubsystemBase {
    */
   public void arcadeDrive(double throttle, double turn) {
     // TODO 2.1: write an arcade drive here
+    leftMotors.set( throttle + turn);
+    rightMotors.set( throttle - turn);
   }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
