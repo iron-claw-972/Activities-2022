@@ -25,10 +25,12 @@ public class MoveDist extends CommandBase {
   public void initialize() {
     m_subsystem.zeroMotors();
     finished=false;
+    dist=0;
     // TODO 2.4: zero encoders before starting
   }
 
   public void execute() {
+    dist = m_subsystem.getDist();
     double motorSpeed = 0.1;
     if(m_subsystem.getDist()<dist&&dist>0){
       m_subsystem.driveStraight(motorSpeed);
