@@ -9,9 +9,9 @@ import frc.robot.constants.Constants;
 public class StraightDriveSubSystem extends SubsystemBase {
   // TODO 2.3: Rename the subsystem
   // TODO 2.3: make motors and/or sensors 
-  WPI_TalonFX leftMotor1 = new WPI_TalonFX(Constants.drive.kLeftMotor);
-  WPI_TalonFX rightMotor1= new WPI_TalonFX(Constants.drive.kRightMotor);
-  PhoenixMotorControllerGroup motors = new PhoenixMotorControllerGroup(leftMotor1, rightMotor1);
+  private WPI_TalonFX leftMotor1 = new WPI_TalonFX(Constants.drive.kLeftMotor);
+  private WPI_TalonFX rightMotor1= new WPI_TalonFX(Constants.drive.kRightMotor);
+  private PhoenixMotorControllerGroup motors = new PhoenixMotorControllerGroup(leftMotor1, rightMotor1);
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
 
