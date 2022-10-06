@@ -19,7 +19,7 @@ public class DriveUntilX extends CommandBase {
 
   public void initialize() {
     // TODO 2.2 Put the stuff that should run at the start, usually to prep for what is in execute
-    m_drive.tankDrive(1, 1);;
+    m_drive.tankDrive(1, 1);
     timer = 5;
   }
 
@@ -30,12 +30,11 @@ public class DriveUntilX extends CommandBase {
 
   public void end(boolean interrupted) {
     // TODO 2.2 Put the stuff that should run when the command ends/ is finished
-    m_drive.tankDrive(0, 0);
+      m_drive.tankDrive(0, 0);
   }
 
   public boolean isFinished() {
     // TODO 2.2 return if the comand should stop. This is where you will check your condition for if the command is finished.
-    if(timer == 0) return true;
-    return false;
+    return (timer == 0);
   }
 }

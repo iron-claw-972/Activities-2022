@@ -4,11 +4,16 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.schedulers.SequentialScheduler;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.ScheduleCommand;
+import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.DriveUntilX;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
 import frc.robot.subsystems.Drivetrain;
@@ -42,12 +47,13 @@ public class Robot extends TimedRobot {
     Operator.configureControls();
 
     // TODO 2.1: replace the "new RunCommand" tank drive command with the arcade drive command you have written
-    drive.setDefaultCommand(
-      new RunCommand(() -> drive.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue()), drive)
-    );
-    // TODO 2.2: schadule your new command
+    // TODO 2.2: replace the arcade drive command with your new command
     // TODO 2.4: replace the command from 2.2 with your new command
-    
+    drive.setDefaultCommand(
+      new ArcadeDrive(drive)
+    );
+    new DriveUntilX(drive).schedule();
+
     // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
 
   }
