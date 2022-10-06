@@ -47,7 +47,7 @@ public class Robot extends TimedRobot {
     // TODO 2.2: replace the arcade drive command with your new command
     // TODO 2.4: replace the command from 2.2 with your new command
     drive.setDefaultCommand(
-      new RunCommand(() -> drive.arcadeDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
+      new RunUntilCondition(drive)
     );
     RunUntilCondition command = new RunUntilCondition(drive);
     command.schedule();
