@@ -30,8 +30,8 @@ public class Drivetrain extends SubsystemBase {
   WPI_TalonFX rightMotor2;
 
   // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't actually do this but you should still learn about motor controller groups)
-  PhoenixMotorControllerGroup leftMotors = new PhoenixMotorControllerGroup(leftMotor1, leftMotor2);
-  PhoenixMotorControllerGroup rightMotors= new PhoenixMotorControllerGroup(rightMotor1, rightMotor2);
+  PhoenixMotorControllerGroup leftMotors = new PhoenixMotorControllerGroup(leftMotor1);
+  PhoenixMotorControllerGroup rightMotors= new PhoenixMotorControllerGroup(rightMotor1);
 
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
