@@ -28,8 +28,8 @@ public class Drivetrain extends SubsystemBase {
   WPI_TalonFX rightMotor2;
 
   // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't actually do this but you should still learn about motor controller groups)
-  PhoenixMotorControllerGroup leftMotors;
-  PhoenixMotorControllerGroup rightMotors; 
+  PhoenixMotorControllerGroup leftMotors = new PhoenixMotorControllerGroup(leftMotor1);
+  PhoenixMotorControllerGroup rightMotors = new PhoenixMotorControllerGroup(rightMotor1); 
 
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
@@ -41,8 +41,9 @@ public class Drivetrain extends SubsystemBase {
     // Done: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones, if you have them.
     // You can also invert the motors, you often need to invert one side to make the robot drive since the motors on one side are flipped.
     // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors!
-    rightMotor1.setInverted(true);
-    rightMotor1.follow(leftMotor1);
+    //rightMotor1.setInverted(true);
+    //rightMotor1.follow(leftMotor1);
+    rightMotors.setInverted(true);  
 
 
 
@@ -67,9 +68,9 @@ public class Drivetrain extends SubsystemBase {
    * @param rightPower the commanded power to the right motors
    */
   public void tankDrive(double leftPower, double rightPower) {
-    // TODO 1.2: Instead of setting motors set the MotorControllerGroup, using motorGroup.set(speed)
-    leftMotor1.set(ControlMode.PercentOutput, leftPower);
-    rightMotor1.set(ControlMode.PercentOutput, rightPower);
+    // DONE 1.2: Instead of setting motors set the MotorControllerGroup, using motorGroup.set(speed)
+    leftMotors.set(leftPower);
+    rightMotors.set(rightPower);
   }
 
   /**
@@ -80,8 +81,8 @@ public class Drivetrain extends SubsystemBase {
    */
   public void arcadeDrive(double throttle, double turn) {
     // DONE: write an arcade drive here
-    leftMotor1.set(ControlMode.PercentOutput, throttle-turn);
-    rightMotor1.set(ControlMode.PercentOutput, throttle-turn);
+    leftMotors.set(throttle-turn);
+    rightMotors.set(throttle-turn);
   }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
