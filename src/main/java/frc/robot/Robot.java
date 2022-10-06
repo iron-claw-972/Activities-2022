@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.ScheduleCommand;
+import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.Runrotations;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
 import frc.robot.subsystems.Drivetrain;
@@ -45,8 +48,9 @@ public class Robot extends TimedRobot {
     // TODO 2.2: replace the arcade drive command with your new command
     // TODO 2.4: replace the command from 2.2 with your new command
     drive.setDefaultCommand(
-      new RunCommand(() -> drive.tankDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
+      new ArcadeDrive(drive)
     );
+    
     // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
 
   }
@@ -85,9 +89,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    if (m_autoCommand != null) {
-      m_autoCommand.schedule();
-    }
+    Runrotations rotate10 = new Runrotations(drive);
+    rotate10.schedule();
+    
   }
 
   /**

@@ -13,7 +13,6 @@ import frc.robot.util.MotorFactory;
 public class SideOfDrivetrain extends SubsystemBase {
 
   // TODO 2.3: add motors/ motor group
-
   public SideOfDrivetrain(boolean isLeft) {
     // TODO 2.3: use the boolean isLeft to set if it is left or right
     // TODO 2.3: set up configuration of motors/encoders
