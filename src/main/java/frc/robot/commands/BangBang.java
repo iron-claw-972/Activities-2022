@@ -29,7 +29,6 @@ public class BangBang extends CommandBase {
 
   public void end(boolean interrupted) {
     // TODO 2.4: when the command ends, the motors should stop spinning
-    m_drive.
   }
 
   public boolean isFinished() {
