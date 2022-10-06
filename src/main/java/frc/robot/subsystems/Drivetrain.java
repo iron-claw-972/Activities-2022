@@ -83,8 +83,8 @@ public class Drivetrain extends SubsystemBase {
    */
   public void arcadeDrive(double throttle, double turn) {
     // TODO 2.1: write an arcade drive here
-    leftMotors.set(throttle + turn);
-    rightMotors.set(throttle - turn);  
+    leftMotors.set((throttle - turn)*0.5);
+    rightMotors.set((throttle + turn)*0.5);  
   }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
