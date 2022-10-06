@@ -2,10 +2,8 @@ package frc.robot.constants;
 
 public class DriveConstants {
 
-  public final int kRightMotor = -1;
-  // TODO 1.1: Add the other motor port, kLeftMotor, and if you have them, kRightMotor2, kLeftMotor2, the same as above.
-  // All of the ports should be public (so they can be accessed anywhere) and final (so they don't change)
-  // find the ID through the motor label, electrical spreadsheet, or phoenix tuner (ask us for help)
+  public final int kRightMotor = 13;
+  public final int kLeftMotor = 12;
   
 
   // TODO 4.1: Add three constants for P, I, and D values. A good starting point is zero for I and D, and a very small value for P
