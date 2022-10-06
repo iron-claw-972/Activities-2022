@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import frc.robot.commands.RunUntilCondition;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
 import frc.robot.subsystems.Drivetrain;
@@ -48,6 +49,8 @@ public class Robot extends TimedRobot {
     drive.setDefaultCommand(
       new RunCommand(() -> drive.arcadeDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
     );
+    RunUntilCondition command = new RunUntilCondition(drive);
+    command.schedule();
     // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
 
   }
