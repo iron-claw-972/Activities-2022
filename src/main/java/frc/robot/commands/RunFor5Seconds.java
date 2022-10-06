@@ -29,6 +29,7 @@ public class RunFor5Seconds extends CommandBase {
 
   public void end(boolean interrupted) {
     timer=0;
+    m_drive.arcadeDrive(0, 0);
     m_drive.setDefaultCommand(
       new ArcadeDrive(m_drive)
     );

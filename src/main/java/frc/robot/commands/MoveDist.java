@@ -29,10 +29,11 @@ public class MoveDist extends CommandBase {
   }
 
   public void execute() {
+    double motorSpeed = 0.1;
     if(m_subsystem.getDist()<dist&&dist>0){
-      m_subsystem.driveStraight(1);
+      m_subsystem.driveStraight(motorSpeed);
     }else if(m_subsystem.getDist()>dist&&dist<0){
-      m_subsystem.driveStraight(-1);
+      m_subsystem.driveStraight(-motorSpeed);
     }else{
       m_subsystem.driveStraight(0);
       finished=true;
