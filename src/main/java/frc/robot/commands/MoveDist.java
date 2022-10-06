@@ -18,6 +18,7 @@ public class MoveDist extends CommandBase {
   // TODO 2.4: Add a parameter that asks for the setpoint (how far the motor will spin)
   public MoveDist(StraightDriveSubSystem subsystem, double dist) {
     m_subsystem = subsystem;
+    this.dist=dist;
     addRequirements(subsystem);
     // TODO 2.4: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
@@ -25,13 +26,12 @@ public class MoveDist extends CommandBase {
   public void initialize() {
     m_subsystem.zeroMotors();
     finished=false;
-    dist=0;
     // TODO 2.4: zero encoders before starting
   }
 
   public void execute() {
-    dist = m_subsystem.getDist();
     double motorSpeed = 0.1;
+    // System.out.println(dist+", "+m_subsystem.getDist());
     if(m_subsystem.getDist()<dist&&dist>0){
       m_subsystem.driveStraight(motorSpeed);
     }else if(m_subsystem.getDist()>dist&&dist<0){
