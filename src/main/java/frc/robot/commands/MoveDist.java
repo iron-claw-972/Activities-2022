@@ -32,8 +32,8 @@ public class MoveDist extends CommandBase {
   }
 
   public void execute() {
-    double motorSpeed = 0.1;
-    // System.out.println(dist+", "+m_subsystem.getDist());
+    double motorSpeed = -0.2;
+    System.out.println("setpoint: "+dist+", current dist: "+m_subsystem.getDist());
     if(m_subsystem.getDist()<dist){
       m_subsystem.driveStraight(motorSpeed);;
     }else{
@@ -49,6 +49,6 @@ public class MoveDist extends CommandBase {
 
   public boolean isFinished() {
     // TODO 2.4: decide when it's finished. Check if it's reached the setpoint, or is within a certain range of the setpoint
-    return Math.abs(m_subsystem.getDist()-dist)<3;
+    return Math.abs(m_subsystem.getDist()-dist)<1000;
   }
 }

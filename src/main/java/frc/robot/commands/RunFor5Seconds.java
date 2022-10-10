@@ -23,16 +23,13 @@ public class RunFor5Seconds extends CommandBase {
 
   public void execute() {
     timer++;
-    m_drive.arcadeDrive(0, 1);
+    m_drive.arcadeDrive(0, 0.5);
     // TODO 2.2 Put the stuff that should run every cycle here
   }
 
   public void end(boolean interrupted) {
     timer=0;
     m_drive.arcadeDrive(0, 0);
-    m_drive.setDefaultCommand(
-      new ArcadeDrive(m_drive)
-    );
 
     // TODO 2.2 Put the stuff that should run when the command ends/ is finished
   }

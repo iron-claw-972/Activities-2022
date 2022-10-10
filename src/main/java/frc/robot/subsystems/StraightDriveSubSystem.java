@@ -33,7 +33,7 @@ public void driveStraight(double throttle){
   motors.set(throttle);
 }
 public double getDist(){
-  return leftMotor1.getSelectedSensorPosition()/2+rightMotor1.getSelectedSensorPosition()/2;
+  return -(leftMotor1.getSelectedSensorPosition()/2+rightMotor1.getSelectedSensorPosition()/2);
 }
 public void zeroMotors(){
   leftMotor1.setSelectedSensorPosition(0);
