@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.RunUntilCondition;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.SideOfDrivetrain;
 import frc.robot.util.ShuffleboardManager;
 
 /**
@@ -27,6 +29,10 @@ public class Robot extends TimedRobot {
   public static ShuffleboardManager shuffleboard = new ShuffleboardManager();
 
   public static Drivetrain drive = new Drivetrain();
+
+  public Joystick joy = new Joystick(0);
+
+  public static SideOfDrivetrain subDrive = new SideOfDrivetrain(false);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -47,7 +53,7 @@ public class Robot extends TimedRobot {
 
     // TODO 2.1: replace the "new RunCommand" tank drive command with the arcade drive command you have written
     // drive.setDefaultCommand(-+
-    
+
     //   new ArcadeDrive(drive)
     // );
     // TODO 2.2: schadule your new command
@@ -117,6 +123,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    if (joy.getRawButton(1) && !subDrive.isRunning) {
+      subDrive.dance();
+    }
   }
 
   @Override
