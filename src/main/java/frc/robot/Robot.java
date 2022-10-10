@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
   public static ShuffleboardManager shuffleboard = new ShuffleboardManager();
 
   public static Drivetrain drive = new Drivetrain();
+  public static StraightDriveSubSystem drive2 = new StraightDriveSubSystem();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -106,10 +107,11 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     drive.setDefaultCommand(
       new SequentialCommandGroup(
-        new MoveDist(new StraightDriveSubSystem(), 1000),
+        new MoveDist(drive2, 1000),
         new RunFor5Seconds(drive)
       )
     );
+    // drive.setDefaultCommand(new ArcadeDrive(drive));
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove

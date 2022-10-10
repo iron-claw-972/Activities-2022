@@ -19,6 +19,7 @@ public class MoveDist extends CommandBase {
   public MoveDist(StraightDriveSubSystem subsystem, double dist) {
     m_subsystem = subsystem;
     this.dist=dist;
+    finished=false;
     addRequirements(subsystem);
     // TODO 2.4: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
@@ -26,23 +27,21 @@ public class MoveDist extends CommandBase {
   public void initialize() {
     m_subsystem.zeroMotors();
     finished=false;
+    System.out.println("MoveDist initialized");
     // TODO 2.4: zero encoders before starting
   }
 
   public void execute() {
     double motorSpeed = 0.1;
     // System.out.println(dist+", "+m_subsystem.getDist());
-    if(m_subsystem.getDist()<dist&&dist>0){
-      m_subsystem.driveStraight(motorSpeed);
-    }else if(m_subsystem.getDist()>dist&&dist<0){
-      m_subsystem.driveStraight(-motorSpeed);
+    if(m_subsystem.getDist()<dist){
+      m_subsystem.driveStraight(motorSpeed);;
     }else{
-      m_subsystem.driveStraight(0);
-      finished=true;
+      m_subsystem.driveStraight(-motorSpeed);;
     }
     // TODO 2.4: Make the MoveForwardsAndBackwards control loop with encoders inputs. This should be a basic if statement: if below, spin forward, if above, spin backward
   }
-
+  
   public void end(boolean interrupted) {
     m_subsystem.driveStraight(0);
     // TODO 2.4: when the command ends, the motors should stop spinning
@@ -50,6 +49,6 @@ public class MoveDist extends CommandBase {
 
   public boolean isFinished() {
     // TODO 2.4: decide when it's finished. Check if it's reached the setpoint, or is within a certain range of the setpoint
-    return finished;
+    return Math.abs(m_subsystem.getDist()-dist)<3;
   }
 }
