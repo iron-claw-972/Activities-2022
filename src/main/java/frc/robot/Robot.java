@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.BangBang;
 import frc.robot.commands.Runrotations;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
@@ -49,8 +50,10 @@ public class Robot extends TimedRobot {
     // TODO 2.4: replace the command from 2.2 with your new command
     drive.setDefaultCommand(
       new ArcadeDrive(drive)
+
     );
-    
+    // Command bangbang = new BangBang(drive, 5000);
+    // bangbang.schedule();
     // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
 
   }

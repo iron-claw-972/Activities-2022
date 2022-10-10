@@ -85,11 +85,12 @@ public class Drivetrain extends SubsystemBase {
 
   
   }
-  public double getEncodervalues(){
+  public void setEncodervalue0(){
     leftMotor1.setSelectedSensorPosition(0);
-    return leftMotor1.getSelectedSensorPosition();
 
   }
-
+  public double getEncodervalues(){
+    return leftMotor1.getSelectedSensorPosition();
+  }
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
 }
