@@ -49,7 +49,7 @@ public class Drivetrain extends SubsystemBase {
     // rightMotor2.follow(rightMotor1);
 
     // TODO 1.2: Change all of the setup above. Motors in a group automatically follow each other so do not set them as followers. You can set them inverted as such:
-    rightMotors.setInverted(true);
+    leftMotors.setInverted(true);
         
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
   }

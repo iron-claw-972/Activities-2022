@@ -26,7 +26,7 @@ public class RunUntilCondition extends CommandBase {
   public void execute() {
     // TODO 2.2 Put the stuff that should run every cycle here
     System.out.println("running");
-    m_drive.arcadeDrive(0.1, 0);
+    m_drive.arcadeDrive(0.5, 0);
   }
 
   public void end(boolean interrupted) {
@@ -37,7 +37,7 @@ public class RunUntilCondition extends CommandBase {
 
   public boolean isFinished() {
     // TODO 2.2 return if the comand should stop. This is where you will check your condition for if the command is finished.
-    if (LocalTime.now().toSecondOfDay() - start >= 3) {
+    if (LocalTime.now().toSecondOfDay() - start >= 2) {
       return true;
     }
     return false;
