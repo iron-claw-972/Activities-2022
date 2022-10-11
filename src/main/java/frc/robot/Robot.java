@@ -14,6 +14,7 @@ import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.util.ShuffleboardManager;
+import frc.robot.commands.DriveForThreeSeconds;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -42,13 +43,14 @@ public class Robot extends TimedRobot {
     Driver.configureControls();
     Operator.configureControls();
 
-    // TODO 2.2: replace the arcade drive command with your new command
-    // TODO 2.4: replace the command from 2.2 with your new command
+	// TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
     drive.setDefaultCommand(
       new ArcadeDrive(drive)
-      );
-    // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
+    );
 
+	// TODO 2.2 Schedule the command you made by creating an object of the command and calling .schedule() on it
+    // TODO 2.4: replace the command from 2.2 with your new command
+    
   }
 
   /**
@@ -88,6 +90,9 @@ public class Robot extends TimedRobot {
     if (m_autoCommand != null) {
       m_autoCommand.schedule();
     }
+
+    DriveForThreeSeconds command = new DriveForThreeSeconds(drive);
+    command.schedule();
   }
 
   /**
