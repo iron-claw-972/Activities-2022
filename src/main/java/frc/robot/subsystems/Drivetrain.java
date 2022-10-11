@@ -79,8 +79,7 @@ public class Drivetrain extends SubsystemBase {
    * @param turn the commanded turn rotation
    */
   public void arcadeDrive(double throttle, double turn) {
-    leftMotor1.set((throttle - turn) * 0.3);
-    rightMotor1.set((throttle + turn) * 0.3);
+    // TODO 2.1: write an arcade drive here
   }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()

@@ -3,37 +3,32 @@ package frc.robot.commands;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import java.time.LocalTime;
 
 
 // TODO 2.2: Rename this command to something more relevant
-public class DriveForThreeSeconds extends CommandBase {
-
-  private int start;
+public class RunUntilCondition extends CommandBase {
 
   private final Drivetrain m_drive;
 
-  public DriveForThreeSeconds(Drivetrain drive) {
+  public RunUntilCondition(Drivetrain drive) {
     m_drive = drive;
     addRequirements(drive);
   }
 
   public void initialize() {
-    start = LocalTime.now().toSecondOfDay();
+    // TODO 2.2 Put the stuff that should run at the start, usually to prep for what is in execute
   }
 
   public void execute() {
-    m_drive.arcadeDrive(0.2, 0);
+    // TODO 2.2 Put the stuff that should run every cycle here
   }
 
   public void end(boolean interrupted) {
-    
+    // TODO 2.2 Put the stuff that should run when the command ends/ is finished
   }
 
   public boolean isFinished() {
-    if (LocalTime.now().toSecondOfDay() - start >= 3) {
-      return true;
-    }
+    // TODO 2.2 return if the comand should stop. This is where you will check your condition for if the command is finished.
     return false;
   }
 }
