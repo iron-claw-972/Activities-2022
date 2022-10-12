@@ -186,4 +186,7 @@ public class MotorFactory {
     return createTalonFX(id, supplyCurrentLimit, supplyTriggerThreshold, supplyTriggerDuration, neutralMode, false);
   }
 
+public class createTalonFX {
+}
+
 }
