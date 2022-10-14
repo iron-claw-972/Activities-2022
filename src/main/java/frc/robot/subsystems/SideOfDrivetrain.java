@@ -17,12 +17,13 @@ public class SideOfDrivetrain extends SubsystemBase {
   private boolean side;
   public boolean isRunning;
   // TODO 2.3: add motors/ motor group
-  WPI_TalonFX motor = new WPI_TalonFX(Constants.drive.kRightMotor);
+  WPI_TalonFX motor;
 
   public SideOfDrivetrain(boolean isLeft) {
     // TODO 2.3: use the boolean isLeft to set if it is left or right
     // TODO 2.3: set up configuration of motors/encoders
     side = isLeft;
+    motor = new WPI_TalonFX(Constants.drive.kRightMotor);
   }
 
   // TODO 2.3: add a function or more to control the drivetrain
@@ -34,7 +35,7 @@ public class SideOfDrivetrain extends SubsystemBase {
     while (LocalTime.now().toSecondOfDay() - startTime <= 6) {
       if (LocalTime.now().toSecondOfDay() - time >= 1) {
         motor.set(ControlMode.PercentOutput, power);
-        power += 0.1f;
+        power = Math.min(power + 0.1f, 1f);
         time = LocalTime.now().toSecondOfDay();
       }
     }

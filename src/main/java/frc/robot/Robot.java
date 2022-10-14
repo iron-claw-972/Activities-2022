@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.RunUntilCondition;
+import frc.robot.commands.BangBang;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -96,7 +97,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    RunUntilCondition command = new RunUntilCondition(drive);
+    BangBang command = new BangBang(drive, 5);
     command.schedule();
   }
 
