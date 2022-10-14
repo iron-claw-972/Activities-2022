@@ -12,7 +12,7 @@ public class Driver {
   public static void configureControls() {
 
     // TODO 3.1: Change the DoNothing() command to one of your commands
-    driver.get(Button.A).whenPressed(new DoNothing());
+    //driver.get(Button.A).whenPressed(new RunUntilCondition());
 
     // TODO 3.3: Write some more triggers for your commands! Group your commands and functions using at least one of each of these: ParallelCommandGroup, SequentialCommandGroup, ConditionalCommand, PrintCommand, WaitUntilCommand
   }

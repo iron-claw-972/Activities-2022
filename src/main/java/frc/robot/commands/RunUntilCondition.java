@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class RunUntilCondition extends CommandBase {
 
   private final Drivetrain m_drive;
-  private double zero;
+  private double timer;
 
   public RunUntilCondition(Drivetrain drive) {
     m_drive = drive;
@@ -19,10 +19,12 @@ public class RunUntilCondition extends CommandBase {
   public void initialize() {
     // TODO 2.2 Put the stuff that should run at the start, usually to prep for what is in execute
       m_drive.arcadeDrive(0.2, 0);
+      timer = 1000;
   }
 
   public void execute() {
     // TODO 2.2 Put the stuff that should run every cycle here
+    timer--;
 
   }
 
@@ -33,7 +35,8 @@ public class RunUntilCondition extends CommandBase {
 
   public boolean isFinished() {
     // TODO 2.2 return if the comand should stop. This is where you will check your condition for if the command is finished.
-
+    if (timer==0)
+      return true;
     return false;
   }
 }

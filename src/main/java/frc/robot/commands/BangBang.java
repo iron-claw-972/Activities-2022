@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class BangBang extends CommandBase {
 
   // TODO 2.4: replace ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain. change the name to something better
-  ExampleSubsystem m_subsystem;
+  SideOfDrivetrain m_subsystem;
 
   // TODO 2.4: Add a parameter that asks for the setpoint (how far the motor will spin)
   public BangBang(ExampleSubsystem subsystem) {

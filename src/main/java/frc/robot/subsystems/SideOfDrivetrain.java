@@ -13,12 +13,22 @@ import frc.robot.util.MotorFactory;
 public class SideOfDrivetrain extends SubsystemBase {
 
   // TODO 2.3: add motors/ motor group
+  WPI_TalonFX motor1;
 
   public SideOfDrivetrain(boolean isLeft) {
     // TODO 2.3: use the boolean isLeft to set if it is left or right
+      if (isLeft) {
+        motor1 = MotorFactory.createTalonFX(1);
+      }
+      else {
+        motor1 = MotorFactory.createTalonFX(2);
+      }
     // TODO 2.3: set up configuration of motors/encoders
+      
   }
 
   // TODO 2.3: add a function or more to control the drivetrain
-
+  public void setSpeed(double power) {
+    motor1.set(ControlMode.PercentOutput, power); 
+  }
 }

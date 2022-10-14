@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.RunUntilCondition;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
 import frc.robot.subsystems.Drivetrain;
@@ -88,10 +89,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    if (m_autoCommand != null) {
-      m_autoCommand.schedule();
-    }
+    RunUntilCondition command = new RunUntilCondition(drive);
+    command.schedule();
   }
+    
+  
 
   /**
    * This function is called periodically during autonomous.
