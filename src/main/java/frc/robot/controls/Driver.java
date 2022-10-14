@@ -23,7 +23,7 @@ public class Driver {
     driver.get(Button.A).whenPressed(new RunFor5Seconds(Robot.drive));
     driver.get(Button.X).whenPressed(new ConditionalCommand(new PrintCommand("Left trigger is pressed\n"), new PrintCommand("Left trigger is not pressed\n"), ()->(driver.get(Axis.LEFT_TRIGGER)>0.75)));
     driver.get(Button.B).whenPressed(new ParallelCommandGroup(new PrintCommand("Moving forward 20000\n"), new MoveDist(Robot.drive2, 20000)));
-    driver.get(Button.Y).whenPressed(new SequentialCommandGroup(new MoveDist(Robot.drive2, -1500), new RunFor5Seconds(Robot.drive), new WaitUntilCommand(()->(driver.get(Axis.RIGHT_TRIGGER)>0.75)), new MoveDist(Robot.drive2, 20000)));
+    driver.get(Button.Y).whenPressed(new SequentialCommandGroup(new MoveDist(Robot.drive2, -15000), new RunFor5Seconds(Robot.drive), new WaitUntilCommand(()->(driver.get(Axis.RIGHT_TRIGGER)>0.75)), new MoveDist(Robot.drive2, 20000)));
     // TODO 3.3: Write some more triggers for your commands! Group your commands and functions using at least one of each of these: ParallelCommandGroup, SequentialCommandGroup, ConditionalCommand, PrintCommand, WaitUntilCommand
   }
 
