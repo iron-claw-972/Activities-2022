@@ -19,12 +19,12 @@ import frc.robot.util.MotorFactory;
 
 public class Drivetrain extends SubsystemBase {
 
-  // TODO 1.1: Create Motor Objects using MotorFactory.createTalonFX(int id)
+  // Done 1.1: Create Motor Objects using MotorFactory.createTalonFX(int id)
   // the ID should be set in the DriveConstants.java file, here you can access it like Constants.drive.kRightMotor
   WPI_TalonFX leftMotor1 = MotorFactory.createTalonFX(Constants.drive.kLeftMotor);
   WPI_TalonFX rightMotor1 = MotorFactory.createTalonFX(Constants.drive.kRightMotor);
-  // TODO 1.1 if you don't have a second motor skip the second motors
-  WPI_TalonFX leftMotor2;
+  // Done 1.1 if you don't have a second motor skip the second motors
+  WPI_TalonFX leftMotor2;  
   WPI_TalonFX rightMotor2;
 
   // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't actually do this but you should still learn about motor controller groups)
@@ -62,7 +62,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   /**
-   * Drives the robot using tank drive controls
+   * Drives the robot using  tank drive controls
    * Tank drive is slightly easier to code but less intuitive to control, so this is here as an example for now
    * @param leftPower the commanded power to the left motors
    * @param rightPower the commanded power to the right motors
@@ -84,6 +84,23 @@ public class Drivetrain extends SubsystemBase {
     leftMotors.set(throttle-turn);
     rightMotors.set(throttle-turn);
   }
+  public double getEncoderLeft() {
+    return leftMotor1.getSelectedSensorPosition();
+  }
+  public double getEncoderRight() {
+    return rightMotor1.getSelectedSensorPosition();
+    
+  }
+
+  public void zeroEncoders() {
+
+  leftMotor1.setSelectedSensorPosition(0);
+  rightMotor1.setSelectedSensorPosition(0);
+  }
+
+  public void stopArcadeDrive() {
+  }
+  
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
 }

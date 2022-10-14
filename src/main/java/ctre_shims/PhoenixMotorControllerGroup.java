@@ -17,7 +17,7 @@ import java.util.Arrays;
  */
 public class PhoenixMotorControllerGroup implements MotorController, Sendable, AutoCloseable {
   private final MotorController[] m_motorControllers;
-  private final MotorController m_leadMotorController;
+  private final Moto  rController m_leadMotorController;
   private static int instances;
 
   /**
@@ -39,7 +39,7 @@ public class PhoenixMotorControllerGroup implements MotorController, Sendable, A
     m_leadMotorController = leadMotorController;
     m_motorControllers = Arrays.copyOf(motorControllers, motorControllers.length);
     init();
-  }
+  } 
 
   private void init() {
     SendableRegistry.addChild(this, m_leadMotorController);
