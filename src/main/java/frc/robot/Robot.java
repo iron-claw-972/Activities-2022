@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
     // TODO 2.2: replace the arcade drive command with your new command
     // TODO 2.4: replace the command from 2.2 with your new command
     drive.setDefaultCommand(
-      new ArcadeDrive(drive)
+      new RunCommand(()->drive.arcadeDrive(0.25*Driver.getRawThrottleValue(), 0.25*Driver.getRawTurnValue()))
     );
     // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
 
