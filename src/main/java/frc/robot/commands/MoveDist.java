@@ -9,6 +9,7 @@ import javax.swing.text.DefaultStyledDocument.ElementSpec;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class MoveDist extends CommandBase {
+  // This was originally called BangBang, but ↓ told me to rename it.
 
   // TODO 2.4: replace ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain. change the name to something better
   StraightDriveSubSystem m_subsystem;

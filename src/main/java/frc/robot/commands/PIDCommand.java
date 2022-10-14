@@ -8,10 +8,12 @@ public class PIDCommand extends CommandBase {
 
   // TODO 4.2: replace ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain. change the name to something better
   ExampleSubsystem m_subsystem;
+  double setpoint;
 
   // TODO 4.2: Add a parameter that asks for the setpoint
-  public PIDCommand(ExampleSubsystem subsystem) {
+  public PIDCommand(ExampleSubsystem subsystem, double setpoint) {
     m_subsystem = subsystem;
+    this.setpoint=setpoint;
     addRequirements(subsystem);
     // TODO 4.2: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
