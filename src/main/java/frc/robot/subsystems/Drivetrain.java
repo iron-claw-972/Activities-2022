@@ -81,6 +81,8 @@ public class Drivetrain extends SubsystemBase {
    */
   public void arcadeDrive(double throttle, double turn) {
     // TODO 2.1: write an arcade drive here
+    leftMotor1.set(ControlMode.PercentOutput, throttle + turn);
+    rightMotor1.set(ControlMode.PercentOutput, throttle - turn);
   }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()

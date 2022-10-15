@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -43,9 +44,11 @@ public class Robot extends TimedRobot {
 
     // TODO 2.1: replace the "new RunCommand" tank drive command with the arcade drive command you have written
     drive.setDefaultCommand(
-      new RunCommand(() -> drive.tankDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
+      new RunCommand(() -> drive.arcadeDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
     );
     // TODO 2.2: schadule your new command
+    
+
     // TODO 2.4: replace the command from 2.2 with your new command
     
     // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
@@ -84,11 +87,15 @@ public class Robot extends TimedRobot {
   /**
    * This autonomous runs the autonomous command selected by your {@link Robot} class.
    */
+
+  private double startTime;
+  
   @Override
   public void autonomousInit() {
     if (m_autoCommand != null) {
       m_autoCommand.schedule();
     }
+    startTime = Timer.getFPGATimestamp();
   }
 
   /**
@@ -96,6 +103,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    double time = Timer.getFPGATimestamp(); 
+    
   }
 
   @Override
