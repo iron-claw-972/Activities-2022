@@ -69,7 +69,7 @@ public class Drivetrain extends SubsystemBase {
    */
   public void tankDrive(double leftPower, double rightPower) {
     // TODO 1.2: Instead of setting motors set the MotorControllerGroup, using motorGroup.set(speed)
-    double a = 0.5;
+    double a = 1;
     leftMotors.set(a*leftPower);
     rightMotors.set(a*rightPower);
   }
@@ -85,6 +85,11 @@ public class Drivetrain extends SubsystemBase {
     // TODO 2.1: write an arcade drive here
     leftMotors.set(throttle+turn);
     rightMotors.set(throttle-turn);
+  }
+
+  public void zeroMotors(){
+    leftMotor1.setSelectedSensorPosition(0);
+    rightMotor1.setSelectedSensorPosition(0);
   }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()

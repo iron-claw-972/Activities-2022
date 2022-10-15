@@ -7,18 +7,19 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class PIDCommand extends CommandBase {
 
   // TODO 4.2: replace ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain. change the name to something better
-  ExampleSubsystem m_subsystem;
+  Drivetrain m_drive;
   double setpoint;
 
   // TODO 4.2: Add a parameter that asks for the setpoint
-  public PIDCommand(ExampleSubsystem subsystem, double setpoint) {
-    m_subsystem = subsystem;
+  public PIDCommand(Drivetrain subsystem, double setpoint) {
+    m_drive = subsystem;
     this.setpoint=setpoint;
     addRequirements(subsystem);
     // TODO 4.2: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
 
   public void initialize() {
+    m_drive.zeroMotors();
     // TODO 4.2: zero encoders and rest the PID controller before starting
   }
 
@@ -27,6 +28,7 @@ public class PIDCommand extends CommandBase {
   }
 
   public void end(boolean interrupted) {
+    m_drive.tankDrive(0, 0);
     // TODO 4.2: when the command ends, the motors should stop spinning
   }
 
