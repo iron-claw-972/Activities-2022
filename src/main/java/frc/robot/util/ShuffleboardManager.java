@@ -23,7 +23,7 @@ public class ShuffleboardManager {
 
     chooserUpdate();
 
-    // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardMangaer class)
+    // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
     m_autoTab.add("Auto Chooser", m_autoCommand);
   }
 
