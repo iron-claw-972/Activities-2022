@@ -13,17 +13,19 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import ctre_shims.PhoenixMotorControllerGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
 import frc.robot.util.MotorFactory;
-
+import frc.robot.constants.DriveConstants;
 
 public class Drivetrain extends SubsystemBase {
 
   // TODO 1.1: Create Motor Objects using MotorFactory.createTalonFX(int id)
   // the ID should be set in the DriveConstants.java file, here you can access it like Constants.drive.kRightMotor
-  WPI_TalonFX leftMotor1 = new WPI_TalonFX(1);
-  WPI_TalonFX rightMotor1 = new WPI_TalonFX(2);
+  public WPI_TalonFX leftMotor1 = new WPI_TalonFX(1);
+  public WPI_TalonFX rightMotor1 = new WPI_TalonFX(2);
   // TODO 1.1 if you don't have a second motor skip the second motors
   //WPI_TalonFX leftMotor2 = new WPI_TalonFX(3);
   //WPI_TalonFX rightMotor2 = new WPI_TalonFX(4);
@@ -34,7 +36,9 @@ public class Drivetrain extends SubsystemBase {
 
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
-
+  public PIDController pidController = new PIDController(DriveConstants.kp, DriveConstants.ki, DriveConstants.kd);
+  double setpoint;
+  boolean isEnabled;
   /**
    * Creates a new DriveSubsystem.
    */
@@ -57,6 +61,10 @@ public class Drivetrain extends SubsystemBase {
     // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors. 
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function. Otherwise, it should set the motor power to zero.
     // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders, and the setpoint is a variable declared above.
+    if(isEnabled){
+      leftMotor1.set(pidController.calculate(getEncoderValue(), setpoint));
+      rightMotor1.set(pidController.calculate(getEncoderValue(), setpoint));
+    }
   }
 
   /**
@@ -95,4 +103,16 @@ public class Drivetrain extends SubsystemBase {
 
   }
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
+  public void setSetpoint(int target){
+    setpoint = target;
+  }
+  public void setEnableStatus(boolean enableStatus){
+    if(enableStatus)
+      isEnabled = false;
+    else
+      isEnabled = true;
+  }
+  public void resetPID(){
+    pidController.reset();
+  }
 }

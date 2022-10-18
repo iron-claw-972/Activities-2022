@@ -2,34 +2,46 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
 
 public class PIDCommand extends CommandBase {
 
   // TODO 4.2: replace ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain. change the name to something better
-  ExampleSubsystem m_subsystem;
-
+  Drivetrain m_drive;
+  double setpoint;
   // TODO 4.2: Add a parameter that asks for the setpoint
-  public PIDCommand(ExampleSubsystem subsystem) {
-    m_subsystem = subsystem;
-    addRequirements(subsystem);
+  public PIDCommand(Drivetrain drive, double setpoint) {
+    m_drive = drive;
+    addRequirements(drive);
+    this.setpoint = setpoint;
+
     // TODO 4.2: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
 
   public void initialize() {
     // TODO 4.2: zero encoders and rest the PID controller before starting
+    m_drive.zeroEncoders();
+    m_drive.resetPID();
+
   }
 
   public void execute() {
     // TODO 4.2: Make the PID control loop
+    if (m_drive.pidController.getPositionError() > 0){
+      
+    }
   }
 
   public void end(boolean interrupted) {
-    // TODO 4.2: when the command ends, the motors should stop spinning
+    m_drive.leftMotor1.set(0);
+    m_drive.rightMotor1.set(0);
   }
 
   public boolean isFinished() {
     // TODO 4.2: check if the PID is finished though the PID controler
+    if(m_drive.pidController.getSetpoint() == setpoint) return true;
     return false;
   }
 }
