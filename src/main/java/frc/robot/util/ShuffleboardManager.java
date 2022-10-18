@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import frc.robot.Robot;
+import frc.robot.commands.PIDCommand;
 
 public class ShuffleboardManager {
 
@@ -23,6 +25,7 @@ public class ShuffleboardManager {
 
     chooserUpdate();
 
+    m_mainTab.add(Robot.drive2.m_pid);
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
     m_autoTab.add("Auto Chooser", m_autoCommand);
   }
@@ -33,6 +36,8 @@ public class ShuffleboardManager {
 
   public void chooserUpdate() {
     m_autoCommand.addOption("Do Nothing", new PrintCommand("This will do nothing!"));
+    m_autoCommand.addOption("PID Forward", new PIDCommand(Robot.drive2, 30000));
+    m_autoCommand.addOption("PID Backward", new PIDCommand(Robot.drive2, -30000));
     // TODO 4.3: add your autonomous command to the auto command chooser
   }
 

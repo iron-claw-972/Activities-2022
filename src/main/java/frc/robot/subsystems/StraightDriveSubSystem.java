@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import ctre_shims.PhoenixMotorControllerGroup;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
 
@@ -12,8 +13,11 @@ public class StraightDriveSubSystem extends SubsystemBase {
   private WPI_TalonFX leftMotor1 = new WPI_TalonFX(Constants.drive.kLeftMotor);
   private WPI_TalonFX rightMotor1= new WPI_TalonFX(Constants.drive.kRightMotor);
   private PhoenixMotorControllerGroup motors = new PhoenixMotorControllerGroup(leftMotor1, rightMotor1);
+  public final PIDController m_pid = new PIDController(Constants.drive.P, Constants.drive.I, Constants.drive.D);
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
+  private double setpoint;
+  private boolean pidEnabled=false;
 
   public StraightDriveSubSystem() {
     rightMotor1.setInverted(true);
@@ -24,6 +28,11 @@ public class StraightDriveSubSystem extends SubsystemBase {
     // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors. 
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function. Otherwise, it should set the motor power to zero.
     // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders, and the setpoint is a variable declared above.
+    if(pidEnabled){
+      motors.set(m_pid.calculate(leftMotor1.getSelectedSensorPosition()/2+rightMotor1.getSelectedSensorPosition()/2, setpoint));
+    }else{
+      motors.set(0);
+    }
   }
 
 
@@ -41,4 +50,13 @@ public void zeroMotors(){
 }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
+  public void setSetPoint(double setpoint){
+    this.setpoint=setpoint;
+  }
+  public void setPidEnabled(boolean enabled){
+    pidEnabled=enabled;
+  }
+  public void resetPid(){
+    m_pid.reset();
+  }
 }
