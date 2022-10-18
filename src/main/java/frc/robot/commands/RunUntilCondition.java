@@ -7,13 +7,13 @@ import java.time.LocalTime;
 
 
 // TODO 2.2: Rename this command to something more relevant
-public class DriveForThreeSeconds extends CommandBase {
+public class RunUntilCondition extends CommandBase {
 
   private int start;
 
   private final Drivetrain m_drive;
 
-  public DriveForThreeSeconds(Drivetrain drive) {
+  public RunUntilCondition(Drivetrain drive) {
     m_drive = drive;
     addRequirements(drive);
   }

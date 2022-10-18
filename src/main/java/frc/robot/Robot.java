@@ -4,17 +4,20 @@
 
 package frc.robot;
 
+import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.RunUntilCondition;
+import frc.robot.commands.BangBang;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import frc.robot.commands.ArcadeDrive;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.SideOfDrivetrain;
 import frc.robot.util.ShuffleboardManager;
-import frc.robot.commands.DriveForThreeSeconds;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -27,6 +30,10 @@ public class Robot extends TimedRobot {
   public static ShuffleboardManager shuffleboard = new ShuffleboardManager();
 
   public static Drivetrain drive = new Drivetrain();
+
+  public Joystick joy = new Joystick(0);
+
+  public static SideOfDrivetrain subDrive = new SideOfDrivetrain(false);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -43,14 +50,17 @@ public class Robot extends TimedRobot {
     Driver.configureControls();
     Operator.configureControls();
 
-	// TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
-    drive.setDefaultCommand(
-      new ArcadeDrive(drive)
-    );
+    CommandScheduler.getInstance().onCommandInitialize(command -> System.out.println(command.getName()));
 
-	// TODO 2.2 Schedule the command you made by creating an object of the command and calling .schedule() on it
+    // TODO 2.1: replace the "new RunCommand" tank drive command with the arcade drive command you have written
+    // drive.setDefaultCommand(-+
+
+    //   new ArcadeDrive(drive)
+    // );
+    // TODO 2.2: schadule your new command
     // TODO 2.4: replace the command from 2.2 with your new command
-    
+    // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
+
   }
 
   /**
@@ -87,11 +97,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    if (m_autoCommand != null) {
-      m_autoCommand.schedule();
-    }
-
-    DriveForThreeSeconds command = new DriveForThreeSeconds(drive);
+    BangBang command = new BangBang(drive, 5);
     command.schedule();
   }
 
@@ -118,6 +124,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    if (joy.getRawButton(1) && !subDrive.isRunning) {
+      subDrive.dance();
+    }
   }
 
   @Override
