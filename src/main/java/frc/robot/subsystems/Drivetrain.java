@@ -115,4 +115,7 @@ public class Drivetrain extends SubsystemBase {
   public void resetPID(){
     pidController.reset();
   }
+  public boolean atSetpoint(){
+    return pidController.atSetpoint();
+  }
 }
