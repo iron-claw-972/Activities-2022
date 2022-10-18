@@ -21,7 +21,7 @@ public class PIDCommand extends CommandBase {
   }
 
   public void initialize() {
-]
+
     // TODO 4.2: zero encoders and rest the PID controller before starting
     m_drive.zeroEncoders();
     m_drive.resetPID();
