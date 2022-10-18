@@ -25,13 +25,14 @@ public class Runrotations extends CommandBase {
   public void initialize() {
     // TODO 2.2 Put the stuff that should run at the start, usually to prep for what is in execute
     m_drive.setEncodervalue0();
+    System.out.println("zeroed");
   }
 
   public void execute() {
     // TODO 2.2 Put the stuff that should run every cycle here{
 
-      m_drive.tankDrive(-0.1,-0.1);
-
+      m_drive.tankDrive(-0.3,-0.3);
+      System.out.println(m_drive.getEncodervalues());
   }
 
   public void end(boolean interrupted) {
@@ -41,6 +42,7 @@ public class Runrotations extends CommandBase {
 
   public boolean isFinished() {
     // TODO 2.2 return if the comand should stop. This is where you will check your condition for if the command is finished.
-    return m_drive.getEncodervalues() >= 10*2048;
+    if (m_drive.getEncodervalues() >= 50*2048) System.out.println("finihsed");
+    return m_drive.getEncodervalues() >= 50*2048;
   }
 }

@@ -12,6 +12,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import ctre_shims.PhoenixMotorControllerGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
 import frc.robot.util.MotorFactory;
@@ -30,10 +33,11 @@ public class Drivetrain extends SubsystemBase {
   // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't actually do this but you should still learn about motor controller groups)
   PhoenixMotorControllerGroup leftMotors = new PhoenixMotorControllerGroup(leftMotor1);
   PhoenixMotorControllerGroup rightMotors = new PhoenixMotorControllerGroup(rightMotor1); 
-
+  public PIDController m_pid = new PIDController(Constants.drive.kP, Constants.drive.kI, Constants.drive.kD);
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
-
+  public double m_setpoint = 0;
+  boolean m_PIDenabled = false;
   /**
    * Creates a new DriveSubsystem.
    */
@@ -44,13 +48,14 @@ public class Drivetrain extends SubsystemBase {
     // motor.setInverted(true);
     // motor.follow(mainMotor);
 
-
+    m_pid.setTolerance(5,10);
 
     // TODO 1.2: Change all of the setup above. Motors in a group automatically follow each other so do not set them as followers. You can set them inverted as such:
     // leftMotors.setInverted(true);
     leftMotors.setInverted(true);
      
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
+  
   }
 
   @Override
@@ -58,6 +63,8 @@ public class Drivetrain extends SubsystemBase {
     // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors. 
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function. Otherwise, it should set the motor power to zero.
     // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders, and the setpoint is a variable declared above.
+    if (m_PIDenabled==true)  
+      leftMotor1.set(MathUtil.clamp((m_pid.calculate(leftMotor1.getSelectedSensorPosition(), m_setpoint)), -0.5, 0.5));
   }
 
   /**
@@ -86,11 +93,26 @@ public class Drivetrain extends SubsystemBase {
   
   }
   public void setEncodervalue0(){
-    leftMotor1.setSelectedSensorPosition(0);
+    leftMotor1.setSelectedSensorPosition(0.0);
 
   }
   public double getEncodervalues(){
-    return leftMotor1.getSelectedSensorPosition();
+    return -leftMotor1.getSelectedSensorPosition();
   }
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
+  public double Setsetpoint(double setpoint){
+    m_setpoint=setpoint;
+    return m_setpoint;
+  }
+  public boolean enablePID(boolean PIDenabled){
+    m_PIDenabled=PIDenabled;
+    return m_PIDenabled;
+  }
+  public void resetPID(){
+    m_pid.reset();
+
+  }
+  public boolean PIDfinished(){
+    return m_pid.atSetpoint();
+  }
 }

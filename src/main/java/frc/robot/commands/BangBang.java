@@ -26,11 +26,11 @@ public class BangBang extends CommandBase {
   public void execute() {
     // TODO 2.4: Make the BangBang control loop with encoders inputs. This should be a basic if statement: if below, spin forward, if above, spin backward
       if (m_distance<m_subsystem.getEncodervalues())
-        m_subsystem.tankDrive(-0.1, -0.1);
+        m_subsystem.tankDrive(0.1, 0.1);
       
 
       if (m_distance>m_subsystem.getEncodervalues())
-        m_subsystem.tankDrive(0.1, 0.1);
+        m_subsystem.tankDrive(-0.1, -0.1);
     
   }
 
@@ -42,6 +42,6 @@ public class BangBang extends CommandBase {
   public boolean isFinished() {
     // TODO 2.4: decide when it's finished. Check if it's reached the setpoint, or is within a certain range of the setpoint
     
-    return m_subsystem.getEncodervalues()<m_distance+50 && m_subsystem.getEncodervalues()>m_distance-50;
+    return m_subsystem.getEncodervalues()<m_distance+100 && m_subsystem.getEncodervalues()>m_distance-100;
   }
 }

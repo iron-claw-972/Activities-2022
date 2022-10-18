@@ -1,5 +1,6 @@
 package frc.robot.util;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -8,11 +9,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import frc.robot.Robot;
+import frc.robot.commands.PIDCommand;
 
 public class ShuffleboardManager {
 
   SendableChooser<Command> m_autoCommand = new SendableChooser<>();
-
+  
   ShuffleboardTab m_mainTab = Shuffleboard.getTab("Main");
   ShuffleboardTab m_autoTab = Shuffleboard.getTab("Auto");
 
@@ -25,6 +28,7 @@ public class ShuffleboardManager {
 
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardMangaer class)
     m_autoTab.add("Auto Chooser", m_autoCommand);
+    m_autoTab.add("PID", Robot.drive.m_pid);
   }
 
   public Command getAutonomousCommand() {
@@ -34,6 +38,7 @@ public class ShuffleboardManager {
   public void chooserUpdate() {
     m_autoCommand.addOption("Do Nothing", new PrintCommand("This will do nothing!"));
     // TODO 4.3: add your autonomous command to the auto command chooser
+    m_autoCommand.addOption("PIDcommand", new PIDCommand(Robot.drive, Robot.drive.m_setpoint));
   }
 
   public void loadCommandSchedulerShuffleboard(){

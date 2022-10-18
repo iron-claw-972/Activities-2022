@@ -8,10 +8,12 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.BangBang;
+import frc.robot.commands.PIDCommand;
 import frc.robot.commands.Runrotations;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
@@ -49,7 +51,7 @@ public class Robot extends TimedRobot {
     // TODO 2.2: replace the arcade drive command with your new command
     // TODO 2.4: replace the command from 2.2 with your new command
     drive.setDefaultCommand(
-      new ArcadeDrive(drive)
+      new RunCommand(()->drive.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue()),drive)
 
     );
     // Command bangbang = new BangBang(drive, 5000);
@@ -92,8 +94,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    Runrotations rotate10 = new Runrotations(drive);
-    rotate10.schedule();
+    new PIDCommand(drive, 10000).schedule();
     
   }
 
