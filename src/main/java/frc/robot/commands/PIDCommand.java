@@ -23,8 +23,8 @@ public class PIDCommand extends CommandBase {
   public void initialize() {
     m_drive.zeroEncoders();
     m_drive.resetPID();
-    m_drive.setEnableStatus(true);
     m_drive.setSetpoint(5000);
+    m_drive.setEnableStatus(true);
     // TODO 4.2: zero encoders, reset the PID controller, and enable it before starting
   }
 
