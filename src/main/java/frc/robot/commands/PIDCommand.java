@@ -17,11 +17,11 @@ public class PIDCommand extends CommandBase {
   }
 
   public void initialize() {
-    // TODO 4.2: zero encoders and rest the PID controller before starting
+    // TODO 4.2: zero encoders, reset the PID controller, and enable it before starting
   }
 
   public void execute() {
-    // TODO 4.2: Make the PID control loop
+    // Your PID already is always running in the periodic() function of your subsystem, so there is no need to do anything here.
   }
 
   public void end(boolean interrupted) {
