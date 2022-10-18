@@ -60,6 +60,19 @@ public class Drivetrain extends SubsystemBase {
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function. Otherwise, it should set the motor power to zero.
     // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders, and the setpoint is a variable declared above.
   }
+  
+  public void zeroEncoders() {
+    leftMotor1.setSelectedSensorPosition(0.0);
+    rightMotor1.setSelectedSensorPosition(0.0);
+  }
+    
+  public double getLeftEncoderValues() {
+    return leftMotor1.getSelectedSensorPosition();
+  }
+
+  public double getRightEncoderValues() {
+    return rightMotor1.getSelectedSensorPosition();
+  } 
 
   /**
    * Drives the robot using tank drive controls
@@ -71,6 +84,7 @@ public class Drivetrain extends SubsystemBase {
     // TODO 1.2: Instead of setting motors set the MotorControllerGroup, using motorGroup.set(speed)
     leftMotor1.set(ControlMode.PercentOutput, leftPower);
     rightMotor1.set(ControlMode.PercentOutput, rightPower);
+
   }
 
   /**

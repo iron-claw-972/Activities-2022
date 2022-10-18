@@ -7,10 +7,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class BangBang extends CommandBase {
 
   // TODO 2.4: replace ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain. change the name to something better
-  SideOfDrivetrain m_subsystem;
-
+  Drivetrain m_subsystem;
+    int m_setpoint;
   // TODO 2.4: Add a parameter that asks for the setpoint (how far the motor will spin)
-  public BangBang(ExampleSubsystem subsystem) {
+  public BangBang(Drivetrain subsystem, int setpoint) {
+    m_setpoint = setpoint;
     m_subsystem = subsystem;
     addRequirements(subsystem);
     // TODO 2.4: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
@@ -18,14 +19,22 @@ public class BangBang extends CommandBase {
 
   public void initialize() {
     // TODO 2.4: zero encoders before starting
+      m_subsystem.zeroEncoders();
   }
 
   public void execute() {
     // TODO 2.4: Make the BangBang control loop with encoders inputs. This should be a basic if statement: if below, spin forward, if above, spin backward
+    if(m_setpoint> m_subsystem.getRightEncoderValues()) {
+      m_subsystem.arcadeDrive(-1, 0);
+    }
+    else {
+      m_subsystem.arcadeDrive(1, 0);
+    }
   }
 
   public void end(boolean interrupted) {
     // TODO 2.4: when the command ends, the motors should stop spinning
+      m_subsystem.arcadeDrive(0,0);
   }
 
   public boolean isFinished() {
