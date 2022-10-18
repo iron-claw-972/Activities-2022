@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import frc.robot.commands.BangBang;
 import frc.robot.commands.RunUntilCondition;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
@@ -46,13 +47,15 @@ public class Robot extends TimedRobot {
 
     // TODO 2.2: replace the arcade drive command with your new command
     // TODO 2.4: replace the command from 2.2 with your new command
+    Drivetrain m_drive = new Drivetrain();
     drive.setDefaultCommand(
-      new RunUntilCondition(drive)
+      new RunCommand(() -> m_drive.arcadeDrive(0.1, 0))
     );
-    RunUntilCondition command = new RunUntilCondition(drive);
-    command.schedule();
+  
+  
+    
     // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
-
+      
   }
 
   /**

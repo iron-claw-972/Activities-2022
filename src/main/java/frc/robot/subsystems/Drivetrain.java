@@ -41,6 +41,7 @@ public class Drivetrain extends SubsystemBase {
    */
   public Drivetrain() {
     
+
     // TODO 1.1: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones, if you have them.
     // You can also invert the motors, you often need to invert one side to make the robot drive since the motors on one side are flipped.
     // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors!
@@ -91,7 +92,29 @@ public class Drivetrain extends SubsystemBase {
      leftMotors.set((throttle - turn)*0.5);
      rightMotors.set((throttle + turn)*0.5);
    } 
-
+   public void zero()
+   {
+      leftMotor1.setSelectedSensorPosition(0.0);
+      rightMotor1.setSelectedSensorPosition(0.0);
+   } 
+   public double getEncoder()
+   {
+      
+      return (leftMotor1.getSelectedSensorPosition() + rightMotor1.getSelectedSensorPosition())/2;
+   }
+   public void forward()
+   {
+     arcadeDrive(0.3, 0);
+   }
+   public void backward()
+   {
+     arcadeDrive(-0.3, 0);
+   }
+   public void stop()
+   {
+      leftMotor1.stopMotor();
+      rightMotor1.stopMotor();
+   }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
 }
