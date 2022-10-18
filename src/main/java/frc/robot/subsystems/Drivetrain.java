@@ -65,6 +65,9 @@ public class Drivetrain extends SubsystemBase {
       leftMotor1.set(pidController.calculate(getEncoderValue(), setpoint));
       rightMotor1.set(pidController.calculate(getEncoderValue(), setpoint));
     }
+    else{
+      tankDrive(0, 0);
+    }
   }
 
   /**
