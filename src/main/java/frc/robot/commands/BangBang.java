@@ -50,7 +50,7 @@ public class BangBang extends CommandBase {
 
   public boolean isFinished() {
     // TODO 2.4: decide when it's finished. Check if it's reached the setpoint, or is within a certain range of the setpoint
-    if (Math.abs(m_drive.getEncoderPosition(true) - target) < 0.1) {
+    if (Math.abs(m_drive.getEncoderPosition(true) - target) < 1) {
       return true;
     }
     return false;

@@ -13,6 +13,7 @@ import ctre_shims.PhoenixMotorControllerGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
 import frc.robot.util.MotorFactory;
@@ -35,6 +36,9 @@ public class Drivetrain extends SubsystemBase {
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
 
+  // PIDController pidController = new PIDController();
+  double setpoint;
+  boolean pidEnabled;
   /**
    * Creates a new DriveSubsystem.
    */
@@ -57,8 +61,11 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors. 
-    // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function. Otherwise, it should set the motor power to zero.
-    // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders, and the setpoint is a variable declared above.
+    // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function.
+    // Otherwise, it should set the motor power to zero.
+    // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders,
+    // and the setpoint is a variable declared above.
+
   }
 
   /**
@@ -97,5 +104,10 @@ public class Drivetrain extends SubsystemBase {
     rightMotor1.setSelectedSensorPosition(position);
   }
 
-  // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
+  // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled.
+  // The last one is a function to reset the PID with pid.reset()
+
+  public void setSetpoint(double setpoint) {
+    
+  }
 }
