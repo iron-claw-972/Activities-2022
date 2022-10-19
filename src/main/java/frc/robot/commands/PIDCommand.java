@@ -33,6 +33,7 @@ public class PIDCommand extends CommandBase {
 
   public void end(boolean interrupted) {
     m_drive.driveStraight(0);
+    m_drive.setPidEnabled(false);
     // TODO 4.2: when the command ends, the motors should stop spinning
   }
 

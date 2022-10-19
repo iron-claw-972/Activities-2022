@@ -29,9 +29,10 @@ public class StraightDriveSubSystem extends SubsystemBase {
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function. Otherwise, it should set the motor power to zero.
     // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders, and the setpoint is a variable declared above.
     if(pidEnabled){
-      motors.set(m_pid.calculate(leftMotor1.getSelectedSensorPosition()/2+rightMotor1.getSelectedSensorPosition()/2, setpoint));
+      motors.set(m_pid.calculate(getDist(), setpoint));
     }else{
-      motors.set(0);
+      // I commented this out because I want other things to run, not just PID
+      // motors.set(0);
     }
   }
 

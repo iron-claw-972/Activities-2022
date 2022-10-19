@@ -69,8 +69,9 @@ public class Drivetrain extends SubsystemBase {
       leftMotors.set(s);
       rightMotors.set(s);
     }else{
-      leftMotors.set(0);
-      rightMotors.set(0);
+      // I commented this out because I want other things to run, not just PID
+      // leftMotors.set(0);
+      // rightMotors.set(0);
     }
   }
 
