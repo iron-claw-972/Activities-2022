@@ -24,6 +24,7 @@ public class PIDCommand extends CommandBase {
     m_drive.resetPid();
     m_drive.setSetPoint(setpoint);
     m_drive.setPidEnabled(true);
+    m_drive.m_pid.setTolerance(100);
     // TODO 4.2: zero encoders and reset the PID controller before starting
   }
 
