@@ -34,11 +34,10 @@ public class Drivetrain extends SubsystemBase {
   PhoenixMotorControllerGroup rightMotors = new PhoenixMotorControllerGroup(rightMotor1); 
 
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
+  public PIDController m_pid = new PIDController(Constants.pid.kP, Constants.pid.kI, Constants.pid.kD);
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
-
-  // PIDController pidController = new PIDController();
-  double setpoint;
-  boolean pidEnabled;
+  double setpoint = 10000;
+  boolean pidEnabled = false;
   /**
    * Creates a new DriveSubsystem.
    */
@@ -61,6 +60,9 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors. 
+    if (pidEnabled) {
+      m_motor.set(m_pid.calculate(m_encoder.getDistance(), setpoint));
+    }
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function.
     // Otherwise, it should set the motor power to zero.
     // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders,
