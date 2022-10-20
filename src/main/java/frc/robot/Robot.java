@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
     // TODO 2.1: replace the "new RunCommand" tank drive command with the arcade drive command you have written
     drive.setDefaultCommand(
       //new RunCommand(() -> drive.tankDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
-      new ArcadeDrive(drive)
+       new RunCommand(()-> DriveTrain.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue()), Robot.drive)
       
     );
     // TODO 2.2: schadule your new command
