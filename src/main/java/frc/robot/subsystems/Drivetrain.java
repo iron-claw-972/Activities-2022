@@ -12,10 +12,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import ctre_shims.PhoenixMotorControllerGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
 import frc.robot.util.MotorFactory;
-
 
 public class Drivetrain extends SubsystemBase {
 
@@ -33,8 +34,10 @@ public class Drivetrain extends SubsystemBase {
   PhoenixMotorControllerGroup rightMotors = new PhoenixMotorControllerGroup(rightMotor1); 
 
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
+    public PIDController m_PID = new PIDController(Constants.PID.kP, Constants.PID.kI, Constants.PID.kD);
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
-
+    double setPoint = 10000;
+    boolean PIDenabled = false;
   /**
    * Creates a new DriveSubsystem.
    */

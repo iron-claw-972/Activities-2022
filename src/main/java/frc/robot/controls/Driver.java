@@ -1,5 +1,10 @@
 package frc.robot.controls;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Robot;
+import frc.robot.commands.BangBang;
 import frc.robot.commands.DoNothing;
 import frc.robot.constants.Constants;
 import lib.controllers.GameController;
@@ -12,14 +17,19 @@ public class Driver {
   public static void configureControls() {
 
     // TODO 3.1: Change the DoNothing() command to one of your commands
-       driver.get(Button.A).whenPressed(new BangBang(robot.DriveTrain, 2000));
+       driver.get(Button.A).whenPressed(new BangBang(Robot.drive, 2000));
 
     // TODO 3.3: Write some more triggers for your commands! Group your commands and functions using at least one of each of these: ParallelCommandGroup, SequentialCommandGroup, ConditionalCommand, PrintCommand, WaitUntilCommand
     //in sequential  write wait until, then bang bang, then print command
-    driver.get(Button.B).whenPressed(new ParallelCommandGroup (
-       (new BangBang(robot.DriveTrain, 2000)))
+    driver.get(Button.A).whenPressed(new ParallelCommandGroup (
+       (new BangBang(Robot.drive, 2000)), 
        new PrintCommand("robot")
-       );
+       ));
+
+    driver.get(Button.B).whenPressed(new SequentialCommandGroup (
+        (new BangBang(Robot.drive, 2000)),
+        new PrintCommand("robot")
+        ));     
 
   }
 
