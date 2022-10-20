@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.Robot;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.StraightDriveSubSystem;
@@ -21,7 +22,7 @@ public class MoveDist extends CommandBase {
     m_subsystem = subsystem;
     this.dist=dist;
     finished=false;
-    addRequirements(subsystem);
+    addRequirements(subsystem, Robot.drive);
     // TODO 2.4: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
 

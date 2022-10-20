@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.Robot;
 import frc.robot.controls.Driver;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -19,7 +20,7 @@ public class ArcadeDrive extends CommandBase {
     m_drive = drive;
 
     // add the drivetrain as a requirement so the scheduler 
-    addRequirements(drive);
+    addRequirements(drive, Robot.drive2);
   }
 
   // Called when the command is initially scheduled.

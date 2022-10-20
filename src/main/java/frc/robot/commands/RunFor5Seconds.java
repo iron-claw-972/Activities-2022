@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.Robot;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -12,7 +13,7 @@ public class RunFor5Seconds extends CommandBase {
 
   public RunFor5Seconds(Drivetrain drive) {
     m_drive = drive;
-    addRequirements(drive);
+    addRequirements(drive, Robot.drive2);
   }
 
   private int timer;

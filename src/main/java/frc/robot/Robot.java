@@ -111,6 +111,7 @@ public class Robot extends TimedRobot {
     PIDCommand command2 = new PIDCommand(drive2, -30000);
     RunFor5Seconds command3 = new RunFor5Seconds(drive);
     new SequentialCommandGroup(command1, command2, command3).schedule();
+    // command2.schedule();
     // drive.setDefaultCommand(
     //   new SequentialCommandGroup(
     //     new MoveDist(drive2, 30000),

@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.Robot;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.StraightDriveSubSystem;
@@ -15,7 +16,7 @@ public class PIDCommand extends CommandBase {
   public PIDCommand(StraightDriveSubSystem subsystem, double setpoint) {
     m_drive = subsystem;
     this.setpoint=setpoint;
-    addRequirements(subsystem);
+    addRequirements(subsystem, Robot.drive);
     // TODO 4.2: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
 
