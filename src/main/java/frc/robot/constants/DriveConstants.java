@@ -8,6 +8,9 @@ public class DriveConstants {
   // find the ID through the motor label, electrical spreadsheet, or phoenix tuner (ask us for help)
   public final int kLeftMotor = 19;
 
-  // TODO 4.1: Add three constants for P, I, and D values. A good starting point is zero for I and D, and a very small value for P
+  // TODO 4.1: Add three constants for P, I, and D values. A good starting point is zero for I and D, and a very small value for 
+  public double kP = 0.1;
+  public double kI = 0;
+  public double kD = 0;
   // If you are using your own subsystem then do not make the constants here, make them in a new constants file! Then, go to constants.java and make a public static final instance of your constants file
 }
