@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.MoveDist;
+import frc.robot.commands.PIDCommand;
 import frc.robot.commands.RunFor5Seconds;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
@@ -107,8 +108,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     MoveDist command1 = new MoveDist(drive2, 30000);
-    RunFor5Seconds command2 = new RunFor5Seconds(drive);
-    new SequentialCommandGroup(command1, command2).schedule();
+    PIDCommand command2 = new PIDCommand(drive2, -30000);
+    RunFor5Seconds command3 = new RunFor5Seconds(drive);
+    new SequentialCommandGroup(command1, command2, command3).schedule();
     // drive.setDefaultCommand(
     //   new SequentialCommandGroup(
     //     new MoveDist(drive2, 30000),
