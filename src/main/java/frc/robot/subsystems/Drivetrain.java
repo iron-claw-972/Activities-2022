@@ -21,8 +21,8 @@ public class Drivetrain extends SubsystemBase {
 
   // TODO 1.1: Create Motor Objects using MotorFactory.createTalonFX(int id)
   // the ID should be set in the DriveConstants.java file, here you can access it like Constants.drive.kRightMotor
-  WPI_TalonFX leftMotor1;
-  WPI_TalonFX rightMotor1;
+  WPI_TalonFX leftMotor1 = MotorFactory.createTalonFX(Constants.drive.kLeftMotor);
+  WPI_TalonFX rightMotor1 = MotorFactory.createTalonFX(Constants.drive.kRightMotor);
   // TODO 1.1 if you don't have a second motor skip the second motors
   WPI_TalonFX leftMotor2;
   WPI_TalonFX rightMotor2;
@@ -33,6 +33,7 @@ public class Drivetrain extends SubsystemBase {
 
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
+ 
 
   /**
    * Creates a new DriveSubsystem.
@@ -43,6 +44,8 @@ public class Drivetrain extends SubsystemBase {
     // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors!
     // motor.setInverted(true);
     // motor.follow(mainMotor);
+    kLeftMoter.setinverted(True);
+    kRightMotor.follow(kLeftmotor);
 
 
 
