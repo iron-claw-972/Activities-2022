@@ -36,7 +36,7 @@ public class Drivetrain extends SubsystemBase {
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
     public PIDController m_PID = new PIDController(Constants.PID.kP, Constants.PID.kI, Constants.PID.kD);
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
-    double setPoint = 10000;
+    double setPoint = 400;
     boolean PIDenabled = false;
   /**
    * Creates a new DriveSubsystem.
@@ -59,9 +59,16 @@ public class Drivetrain extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors. 
+    // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors.
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function. Otherwise, it should set the motor power to zero.
     // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders, and the setpoint is a variable declared above.
+    
+    if (PIDenabled=true) {
+      leftMotors.set(m_PID.calculate(leftMotor1.getSelectedSensorPosition(), setPoint));
+    }
+    else {
+      leftMotors.set(0.0);
+    }
   }
   
   public void zeroEncoders() {
@@ -103,4 +110,13 @@ public class Drivetrain extends SubsystemBase {
   }
 
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
+    public void setPoint(double newSetpoint) {
+      setPoint = newSetpoint;
+    }
+    public void setPIDEnabled(boolean newPIDEnabled) {
+      PIDenabled = newPIDEnabled;
+    }
+    public void resetPID() {
+      m_PID.reset();
+    }
 }

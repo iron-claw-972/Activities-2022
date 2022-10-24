@@ -7,17 +7,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class PIDCommand extends CommandBase {
 
   // TODO 4.2: replace ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain. change the name to something better
-  ExampleSubsystem m_subsystem;
+  Drivetrain m_drive;
 
   // TODO 4.2: Add a parameter that asks for the setpoint
-  public PIDCommand(ExampleSubsystem subsystem) {
-    m_subsystem = subsystem;
-    addRequirements(subsystem);
+  public PIDCommand(Drivetrain drive) {
+    m_drive = drive;
+    addRequirements(drive);
     // TODO 4.2: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
 
   public void initialize() {
     // TODO 4.2: zero encoders, reset the PID controller, and enable it before starting
+    
   }
 
   public void execute() {
