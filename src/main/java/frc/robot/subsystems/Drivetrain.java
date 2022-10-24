@@ -37,7 +37,7 @@ public class Drivetrain extends SubsystemBase {
   public PIDController m_pid = new PIDController(Constants.pid.kP, Constants.pid.kI, Constants.pid.kD);
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
   double setpoint = 10000;
-  boolean pidEnabled = false;
+  public boolean pidEnabled = false;
   /**
    * Creates a new DriveSubsystem.
    */
@@ -61,7 +61,11 @@ public class Drivetrain extends SubsystemBase {
   public void periodic() {
     // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors. 
     if (pidEnabled) {
-      m_motor.set(m_pid.calculate(m_encoder.getDistance(), setpoint));
+      leftMotors.set(m_pid.calculate(getEncoderPosition(true), setpoint));
+      rightMotors.set(m_pid.calculate(getEncoderPosition(true), setpoint));
+    } else {
+      leftMotors.stopMotor();
+      rightMotors.stopMotor();
     }
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function.
     // Otherwise, it should set the motor power to zero.
@@ -109,7 +113,19 @@ public class Drivetrain extends SubsystemBase {
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled.
   // The last one is a function to reset the PID with pid.reset()
 
-  public void setSetpoint(double setpoint) {
-    
+  public void setSetpoint(double value) {
+    setpoint = value;
+  }
+
+  public void stateOfPID(boolean turnedOn) {
+    pidEnabled = turnedOn;
+  }
+  
+  public void resetPID() {
+    m_pid.reset();
+  }
+  
+  public PIDController returnPID() {
+    return m_pid;
   }
 }

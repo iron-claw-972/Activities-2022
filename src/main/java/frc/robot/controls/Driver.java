@@ -17,7 +17,8 @@ public class Driver {
     // TODO 3.1: Change the DoNothing() command to one of your commands
     driver.get(Button.A).whenPressed(new BangBang(Robot.drive, 40000));
 
-    // TODO 3.3: Write some more triggers for your commands! Group your commands and functions using at least one of each of these: ParallelCommandGroup, SequentialCommandGroup, ConditionalCommand, PrintCommand, WaitUntilCommand
+    // TODO 3.3: Write some more triggers for your commands! Group your commands and functions using at least one of each of these:
+    // ParallelCommandGroup, SequentialCommandGroup, ConditionalCommand, PrintCommand, WaitUntilCommand
   }
 
   public static double getRawThrottleValue() {
