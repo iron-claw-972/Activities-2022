@@ -8,10 +8,11 @@ public class PIDCommand extends CommandBase {
 
   // TODO 4.2: replace ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain. change the name to something better
   Drivetrain m_subsystem;
-
+  double m_setpoint;
   // TODO 4.2: Add a parameter that asks for the setpoint
   public PIDCommand(Drivetrain subsystem, double setpoint) {
     m_subsystem = subsystem;
+    m_setpoint = setpoint;
     addRequirements(subsystem);
     // TODO 4.2: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
@@ -20,7 +21,7 @@ public class PIDCommand extends CommandBase {
     // TODO 4.2: zero encoders and rest the PID controller before starting
     m_subsystem.setEncodervalue0();
     m_subsystem.resetPID();
-    m_subsystem.Setsetpoint(10000);
+    m_subsystem.Setsetpoint(m_setpoint);
     m_subsystem.enablePID(true);
   }
 
@@ -37,6 +38,6 @@ public class PIDCommand extends CommandBase {
 
   public boolean isFinished() {
     // TODO 4.2: check if the PID is finished though the PID controler
-    return m_subsystem.PIDfinished();
+    return m_subsystem.pIDfinished();
   }
 }

@@ -48,14 +48,15 @@ public class Robot extends TimedRobot {
     Operator.configureControls();
 
     // TODO 2.1: replace the "new RunCommand" tank drive command with the arcade drive command you have written
-    // TODO 2.2: replace the arcade drive command with your new command
-    // TODO 2.4: replace the command from 2.2 with your new command
     drive.setDefaultCommand(
       new RunCommand(()->drive.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue()),drive)
 
     );
     // Command bangbang = new BangBang(drive, 5000);
     // bangbang.schedule();
+    // TODO 2.2: schadule your new command
+    // TODO 2.4: replace the command from 2.2 with your new command
+    
     // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
 
   }
@@ -94,7 +95,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    new PIDCommand(drive, 10000).schedule();
+    new PIDCommand(drive, 50000).schedule();
     
   }
 

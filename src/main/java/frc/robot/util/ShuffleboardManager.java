@@ -26,9 +26,10 @@ public class ShuffleboardManager {
 
     chooserUpdate();
 
-    // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardMangaer class)
+    // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
     m_autoTab.add("Auto Chooser", m_autoCommand);
-    m_autoTab.add("PID", Robot.drive.m_pid);
+    m_autoTab.addNumber("PID encoder value", ()-> Robot.drive.getEncodervalues());
+    m_autoTab.add("PID", Robot.drive.getPID());
   }
 
   public Command getAutonomousCommand() {
@@ -38,7 +39,7 @@ public class ShuffleboardManager {
   public void chooserUpdate() {
     m_autoCommand.addOption("Do Nothing", new PrintCommand("This will do nothing!"));
     // TODO 4.3: add your autonomous command to the auto command chooser
-    m_autoCommand.addOption("PIDcommand", new PIDCommand(Robot.drive, Robot.drive.m_setpoint));
+    m_autoCommand.addOption("PIDcommand", new PIDCommand(Robot.drive, 5000));
   }
 
   public void loadCommandSchedulerShuffleboard(){

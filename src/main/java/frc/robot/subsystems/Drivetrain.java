@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
 import frc.robot.util.MotorFactory;
@@ -33,10 +34,10 @@ public class Drivetrain extends SubsystemBase {
   // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't actually do this but you should still learn about motor controller groups)
   PhoenixMotorControllerGroup leftMotors = new PhoenixMotorControllerGroup(leftMotor1);
   PhoenixMotorControllerGroup rightMotors = new PhoenixMotorControllerGroup(rightMotor1); 
-  public PIDController m_pid = new PIDController(Constants.drive.kP, Constants.drive.kI, Constants.drive.kD);
+  PIDController m_pid = new PIDController(Constants.drive.kP, Constants.drive.kI, Constants.drive.kD);
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
-  public double m_setpoint = 0;
+  double m_setpoint = 2000;
   boolean m_PIDenabled = false;
   /**
    * Creates a new DriveSubsystem.
@@ -55,6 +56,7 @@ public class Drivetrain extends SubsystemBase {
     leftMotors.setInverted(true);
      
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
+
   
   }
 
@@ -63,8 +65,10 @@ public class Drivetrain extends SubsystemBase {
     // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors. 
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function. Otherwise, it should set the motor power to zero.
     // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders, and the setpoint is a variable declared above.
+    double PID = MathUtil.clamp((m_pid.calculate(leftMotor1.getSelectedSensorPosition(), m_setpoint)), -0.5, 0.5);
     if (m_PIDenabled==true)  
-      leftMotor1.set(MathUtil.clamp((m_pid.calculate(leftMotor1.getSelectedSensorPosition(), m_setpoint)), -0.5, 0.5));
+      leftMotor1.set(ControlMode.PercentOutput,PID);
+     
   }
 
   /**
@@ -112,7 +116,10 @@ public class Drivetrain extends SubsystemBase {
     m_pid.reset();
 
   }
-  public boolean PIDfinished(){
+  public boolean pIDfinished(){
     return m_pid.atSetpoint();
+  }
+  public PIDController getPID(){
+    return m_pid;
   }
 }
