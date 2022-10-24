@@ -12,6 +12,7 @@ public class PIDCommand extends CommandBase {
   // TODO 4.2: Add a parameter that asks for the setpoint
   public PIDCommand(Drivetrain drive, double setpoint) {
     m_drive = drive;
+    m_drive.setSetpoint(setpoint);
     addRequirements(drive);
     // TODO 4.2: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
@@ -20,6 +21,7 @@ public class PIDCommand extends CommandBase {
     // TODO 4.2: zero encoders and reset the PID controller before starting
     m_drive.setEncoderPosition(0);
     m_drive.resetPID();
+    m_drive.enablePID();
   }
 
   public void execute() {
