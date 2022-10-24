@@ -27,6 +27,7 @@ public class ShuffleboardManager {
 
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardMangaer class)
     m_autoTab.add("Auto Chooser", m_autoCommand);
+    m_mainTab.add("PID", Robot.drive.m_pid);
   }
 
   public Command getAutonomousCommand() {
