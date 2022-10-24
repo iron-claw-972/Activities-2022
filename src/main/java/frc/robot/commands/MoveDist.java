@@ -51,6 +51,6 @@ public class MoveDist extends CommandBase {
 
   public boolean isFinished() {
     // TODO 2.4: decide when it's finished. Check if it's reached the setpoint, or is within a certain range of the setpoint
-    return Math.abs(m_subsystem.getDist()-dist)<1000;
+    return Math.abs(m_subsystem.getDist()-dist)<100;
   }
 }

@@ -107,12 +107,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    MoveDist command1 = new MoveDist(drive2, 30000);
-    PIDCommand command2 = new PIDCommand(drive2, -30000);
+    MoveDist command1 = new MoveDist(drive2, 60000);
+    PIDCommand command2 = new PIDCommand(drive2, -60000);
     RunFor5Seconds command3 = new RunFor5Seconds(drive);
     new SequentialCommandGroup(command1, command2, command3).schedule();
     // command2.schedule();
-    // drive.setDefaultCommand(
+    // drive.setDe8faultCommand(
     //   new SequentialCommandGroup(
     //     new MoveDist(drive2, 30000),
     //     new RunFor5Seconds(drive)

@@ -21,6 +21,7 @@ public class PIDCommand extends CommandBase {
   }
 
   public void initialize() {
+    System.out.println("Initializing PID");
     m_drive.zeroMotors();
     m_drive.resetPid();
     m_drive.setSetPoint(setpoint);
@@ -36,6 +37,7 @@ public class PIDCommand extends CommandBase {
   public void end(boolean interrupted) {
     m_drive.driveStraight(0);
     m_drive.setPidEnabled(false);
+    System.out.println("Ending PID"+(interrupted?" (interrupted)":""));
     // TODO 4.2: when the command ends, the motors should stop spinning
   }
 
