@@ -113,10 +113,17 @@ public class Drivetrain extends SubsystemBase {
     public void setPoint(double newSetpoint) {
       setPoint = newSetpoint;
     }
+     public void resetPID() {
+      m_PID.reset();
+     }
     public void setPIDEnabled(boolean newPIDEnabled) {
       PIDenabled = newPIDEnabled;
     }
-    public void resetPID() {
-      m_PID.reset();
+    public boolean isFinishedPID() {
+        return m_PID.atSetpoint();
     }
+    public PIDController returnPID() {
+      return m_PID;
+    }
+   
 }

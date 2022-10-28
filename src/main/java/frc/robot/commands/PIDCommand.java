@@ -18,7 +18,9 @@ public class PIDCommand extends CommandBase {
 
   public void initialize() {
     // TODO 4.2: zero encoders, reset the PID controller, and enable it before starting
-    
+    m_drive.zeroEncoders();
+    m_drive.resetPID();
+    m_drive.setPIDEnabled(true);
   }
 
   public void execute() {
@@ -27,10 +29,11 @@ public class PIDCommand extends CommandBase {
 
   public void end(boolean interrupted) {
     // TODO 4.2: when the command ends, the motors should stop spinning
+    m_drive.setPIDEnabled(false);
   }
 
   public boolean isFinished() {
     // TODO 4.2: check if the PID is finished though the PID controler
-    return false;
+      return m_drive.isFinishedPID();
   }
 }
