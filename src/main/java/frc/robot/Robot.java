@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.FFCommand;
 import frc.robot.commands.MoveDist;
 import frc.robot.commands.PIDCommand;
 import frc.robot.commands.RunFor5Seconds;
@@ -49,8 +50,11 @@ public class Robot extends TimedRobot {
     Operator.configureControls();
 
     // TODO 2.1: replace the "new RunCommand" tank drive command with the arcade drive command you have written
+    // drive.setDefaultCommand(
+    //   new RunCommand(()->drive.arcadeDrive(0.25*Driver.getRawThrottleValue(), -0.25*Driver.getRawTurnValue()), drive, drive2)
+    // );
     drive.setDefaultCommand(
-      new RunCommand(()->drive.arcadeDrive(0.25*Driver.getRawThrottleValue(), -0.25*Driver.getRawTurnValue()), drive, drive2)
+      new FFCommand(drive)
     );
     // TODO 2.2: schadule your new command
     // TODO 2.4: replace the command from 2.2 with your new command

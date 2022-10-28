@@ -14,6 +14,7 @@ import ctre_shims.PhoenixMotorControllerGroup;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
 import frc.robot.util.MotorFactory;
@@ -38,6 +39,10 @@ public class Drivetrain extends SubsystemBase {
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
   private double setpoint;
   private boolean pidEnabled=false;
+
+  public SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.drive.S, Constants.drive.V, Constants.drive.A);
+  public PIDController leftPID = new PIDController(Constants.drive.P2, 0, Constants.drive.D2);
+  public PIDController rightPID = new PIDController(Constants.drive.P2, 0, Constants.drive.D2);
 
   /**
    * Creates a new DriveSubsystem.
@@ -120,5 +125,20 @@ public class Drivetrain extends SubsystemBase {
   }
   public void resetPid(){
     m_pid.reset();
+  }
+
+  public double getMotorVelocity(String side){
+    if(side.equalsIgnoreCase("left")){
+      return leftMotor1.getSelectedSensorVelocity();
+    }else if(side.equalsIgnoreCase("left")){
+      return rightMotor1.getSelectedSensorVelocity();
+    }else{
+      return 0;
+    }
+  }
+
+  public void setMotorVoltage(double left, double right){
+    leftMotors.setVoltage(left);
+    rightMotors.setVoltage(right);
   }
 }

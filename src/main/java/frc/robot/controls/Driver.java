@@ -31,13 +31,18 @@ public class Driver {
     driver.get(Button.LB).whileHeld(new RunCommand(()->Robot.drive.arcadeDrive(0, -0.75), Robot.drive, Robot.drive2));
     driver.get(Button.RB).whileHeld(new RunCommand(()->Robot.drive.arcadeDrive(0, 0.75), Robot.drive, Robot.drive2));
     driver.get(Button.START).toggleWhenPressed(new RunCommand(()->Robot.drive.tankDrive(0.5*driver.get(Axis.LEFT_TRIGGER), 0.5*driver.get(Axis.RIGHT_TRIGGER)), Robot.drive, Robot.drive2));
-    // driver.get(Button.LEFT_JOY).whenPressed(new RunCommand(()->Robot.drive.arcadeDrive(0, -0.25), Robot.drive, Robot.drive2).until(()->(backPressed)));
-    // driver.get(Button.RIGHT_JOY).whenPressed(new RunCommand(()->Robot.drive.arcadeDrive(0, 0.25), Robot.drive, Robot.drive2).until(()->(backPressed)));
-    // driver.get(Button.BACK).whenPressed(new RunCommand(()->(backPressed=true)));
+    driver.get(Button.LEFT_JOY).whenPressed(new RunCommand(()->Robot.drive.arcadeDrive(0, -0.25), Robot.drive, Robot.drive2).until(()->(backPressed)));
+    driver.get(Button.RIGHT_JOY).whenPressed(new RunCommand(()->Robot.drive.arcadeDrive(0, 0.25), Robot.drive, Robot.drive2).until(()->(backPressed)));
+    driver.get(Button.BACK).whenPressed(new InstantCommand(()->setBackPressed(true)));
+    driver.get(Button.BACK).whenReleased(new InstantCommand(()->setBackPressed(false)));
     // TODO 3.3: Write some more triggers for your commands! Group your commands and functions using at least one of each of these: ParallelCommandGroup, SequentialCommandGroup, ConditionalCommand, PrintCommand, WaitUntilCommand
   }
 
   public Driver() {
+  }
+
+  private static void setBackPressed(boolean back){
+    backPressed=back;
   }
 
   public static double getRawThrottleValue() {
