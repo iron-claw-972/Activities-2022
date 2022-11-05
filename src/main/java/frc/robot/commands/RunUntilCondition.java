@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class RunUntilCondition extends CommandBase {
 
   private final Drivetrain m_drive;
-  double startTime;
+  private double startTime;
 
   public RunUntilCondition(Drivetrain drive) {
     m_drive = drive;
@@ -24,7 +24,11 @@ public class RunUntilCondition extends CommandBase {
 
   public void execute() {
     // TODO 2.2 Put the stuff that should run every cycle here
-    double time;
+    double time = startTime - Timer.getFPGATimestamp();
+
+    if (time == 3) {
+      m_drive.arcadeDrive(0.2, 0);
+    }
   }
 
   public void end(boolean interrupted) {
