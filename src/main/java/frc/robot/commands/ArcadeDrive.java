@@ -30,6 +30,7 @@ public class ArcadeDrive extends CommandBase {
   public void execute() {
 
     // TODO 2.1: Call the arcade drive function written in Drivetrain here. This function is called repeatedly so it will constantly run while the command is being executed 
+    drive.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue());
 
   }
 
