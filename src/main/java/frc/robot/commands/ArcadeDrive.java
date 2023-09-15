@@ -23,12 +23,13 @@ public class ArcadeDrive extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_drive.arcadeDrive(1.0, 0.0);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
     // TODO 2.1: Call the arcade drive function written in Drivetrain here. This function is called repeatedly so it will constantly run while the command is being executed 
 
   }
@@ -40,6 +41,6 @@ public class ArcadeDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+
   }
 }
