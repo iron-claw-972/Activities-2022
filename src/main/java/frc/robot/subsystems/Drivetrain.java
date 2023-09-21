@@ -84,5 +84,13 @@ public class Drivetrain extends SubsystemBase {
     rightMotors.set((throttle - turn) * 0.5);
   }
 
+  public WPI_TalonFX getLeftEncoder() {
+    return leftMotor1;
+  }
+
+  public WPI_TalonFX getRightEncoder() {
+    return rightMotor1;
+  }
+
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
 }

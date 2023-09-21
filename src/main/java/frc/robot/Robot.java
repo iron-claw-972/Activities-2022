@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutoDrive;
+import frc.robot.commands.BangBang;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
 import frc.robot.subsystems.Drivetrain;
@@ -48,8 +49,8 @@ public class Robot extends TimedRobot {
       new RunCommand(() -> drive.arcadeDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
     );
     // TODO 2.2: schedule your new command
-    AutoDrive autoDrive = new AutoDrive(drive);
-    autoDrive.schedule();
+    BangBang bangBang = new BangBang(drive);
+    bangBang.schedule();
     
     // TODO 2.4: replace the command from 2.2 with your new command
     
