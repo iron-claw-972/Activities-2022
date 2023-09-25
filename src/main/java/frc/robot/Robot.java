@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
 
     shuffleboard.setup();
 
-    Driver.configureControls();
+    Driver.configureControls(drive);
     Operator.configureControls();
 
     // TODO 2.1: replace the "new RunCommand" tank drive command with the arcade drive command you have written
@@ -49,8 +49,8 @@ public class Robot extends TimedRobot {
       new RunCommand(() -> drive.arcadeDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
     );
     // TODO 2.2: schedule your new command
-    BangBang bangBang = new BangBang(drive);
-    bangBang.schedule();
+    // BangBang bangBang = new BangBang(drive);
+    // bangBang.schedule();
     
     // TODO 2.4: replace the command from 2.2 with your new command
     

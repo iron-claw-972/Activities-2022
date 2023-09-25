@@ -15,6 +15,7 @@ public class BangBang extends CommandBase {
   WPI_TalonFX leftMotor;
   WPI_TalonFX rightMotor;
   int setpoint;
+  static double kP = 0.001;
 
   // TODO 2.4: Add a parameter that asks for the setpoint (how far the motor will spin)
   public BangBang(Drivetrain m_drive) {
@@ -28,15 +29,17 @@ public class BangBang extends CommandBase {
 
   public void initialize() {
     // TODO 2.4: zero encoders before starting
-    // uhhh how?
+    leftMotor.setSelectedSensorPosition(0);
   }
 
   public void execute() {
     // TODO 2.4: Make the BangBang control loop with encoders inputs. This should be a basic if statement: if below, spin forward, if above, spin backward
-    if (leftMotor.getSelectedSensorPosition() > setpoint)
-      m_drive.arcadeDrive(1.0, 0.0);
+    double error = leftMotor.getSelectedSensorPosition() - setpoint;
+    // System.out.println(error);
+    if (error < 0)
+      m_drive.arcadeDrive(kP * error, 0.0);
     else
-      m_drive.arcadeDrive(-1.0, 0.0);
+      m_drive.arcadeDrive(-kP * error, 0.0);
   }
 
   public void end(boolean interrupted) {
@@ -45,6 +48,7 @@ public class BangBang extends CommandBase {
   }
 
   public boolean isFinished() {
+    System.out.println(leftMotor.getSelectedSensorPosition());
     // TODO 2.4: decide when it's finished. Check if it's reached the setpoint, or is within a certain range of the setpoint
     if (java.lang.Math.abs(leftMotor.getSelectedSensorPosition() - setpoint) < 5)
       return true;
