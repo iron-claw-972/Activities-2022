@@ -70,8 +70,8 @@ public class Drivetrain extends SubsystemBase {
    */
   public void tankDrive(double leftPower, double rightPower) {
     // TODO 1.2: Instead of setting motors set the MotorControllerGroup, using motorGroup.set(speed)
-    leftMotor1.set(ControlMode.PercentOutput, leftPower);
-    rightMotor1.set(ControlMode.PercentOutput, rightPower);
+    leftMotors.set(MathUtil.clamp(leftPower, -1, 1) * 0.5);
+    rightMotors.set(MathUtil.clamp(rightPower, -1, 1) * 0.5);
   }
 
   /**

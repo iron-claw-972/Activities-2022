@@ -22,7 +22,7 @@ public class BangBang extends CommandBase {
     this.m_drive = m_drive;
     this.leftMotor = m_drive.getLeftEncoder();
     this.rightMotor = m_drive.getRightEncoder();
-    this.setpoint = 512;
+    this.setpoint = 10 * 2048;
     addRequirements(m_drive);
     // TODO 2.4: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
