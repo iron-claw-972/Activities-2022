@@ -14,9 +14,10 @@ public class PIDCommand extends CommandBase {
   // TODO 4.2: replace ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain. change the name to something better
   // ExampleSubsystem m_subsystem;
   Drivetrain m_drive;
-  static final double kP = 0.001;
-  static final double kI = 0.0;
-  static final double kD = 1000;
+  static final double kP = 0.0001;
+  static final double kI = 0.000001;
+  static final double kD = 0.0;
+  int setpoint;
   PIDController pid;
   WPI_TalonFX motor;
 
@@ -24,6 +25,7 @@ public class PIDCommand extends CommandBase {
   public PIDCommand(Drivetrain m_drive, int setpoint) {
     this.m_drive = m_drive;
     this.motor = m_drive.getLeftEncoder();
+    this.setpoint = setpoint;
     addRequirements(m_drive);
     pid = new PIDController(kP, kI, kD);
     pid.setTolerance(10, 5);
@@ -38,8 +40,9 @@ public class PIDCommand extends CommandBase {
   public void execute() {
     // Your PID already is always running in the periodic() function of your subsystem, so there is no need to do anything here.
     // I'll add it anyway, cause I didn't make a subsystem
-    m_drive.arcadeDrive(pid.calculate(motor.getSelectedSensorPosition()), 0.0);
+    m_drive.arcadeDrive(pid.calculate(motor.getSelectedSensorPosition(), setpoint), 0.0);
     System.out.println(pid.getPositionError());
+    // System.out.println(motor.getSelectedSensorPosition());
   }
 
   public void end(boolean interrupted) {

@@ -6,8 +6,9 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 
-// ~10,240 rotations of wheel req
-// need to account for gearing
+// ~10,240 ticks req
+// need to account for gearing (mult by 8)
+// so it's ~81,920 ticks
 
 public class Turn180 extends CommandBase {
     Drivetrain m_drive;
@@ -17,9 +18,10 @@ public class Turn180 extends CommandBase {
     PIDController leftPID;
     PIDController rightPID;
 
-    static final double kP = 0.0000001;
+    static final double kP = 0.0;
     static final double kI = 0.0;
     static final double kD = 0.0;
+    static final int ticks = 81920;
 
     public Turn180(Drivetrain m_drive) {
         this.m_drive = m_drive;
@@ -38,8 +40,8 @@ public class Turn180 extends CommandBase {
     }
 
     public void execute() {
-        m_drive.tankDrive(leftPID.calculate(leftMotor.getSelectedSensorPosition()),
-            rightPID.calculate(rightMotor.getSelectedSensorPosition()));
+        m_drive.tankDrive(leftPID.calculate(leftMotor.getSelectedSensorPosition(), ticks),
+            rightPID.calculate(rightMotor.getSelectedSensorPosition(), -ticks));
     }
 
     public void end(boolean interrupted) {
