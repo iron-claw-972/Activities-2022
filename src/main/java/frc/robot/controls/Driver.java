@@ -14,8 +14,8 @@ public class Driver {
 
   public static void configureControls(Drivetrain m_drive) {
     // TODO 3.1: Change the DoNothing() command to one of your commands
-    driver.get(Button.A).onTrue(new PIDCommand(m_drive, 10240 * 8));
-    driver.get(Button.B).onTrue(new Turn180(m_drive));
+    driver.get(Button.A).onTrue(new PIDCommand(m_drive, 10240 * 8, Constants.drive));
+    driver.get(Button.B).onTrue(new Turn180(m_drive, Constants.drive));
     driver.get(Button.X).onTrue(new DoNothing());
     driver.get(Button.Y).onTrue(new DoNothing());
 

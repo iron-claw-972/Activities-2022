@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 
@@ -14,20 +15,17 @@ public class PIDCommand extends CommandBase {
   // TODO 4.2: replace ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain. change the name to something better
   // ExampleSubsystem m_subsystem;
   Drivetrain m_drive;
-  static final double kP = 0.0001;
-  static final double kI = 0.000001;
-  static final double kD = 0.0;
   int setpoint;
   PIDController pid;
   WPI_TalonFX motor;
 
   // TODO 4.2: Add a parameter that asks for the setpoint
-  public PIDCommand(Drivetrain m_drive, int setpoint) {
+  public PIDCommand(Drivetrain m_drive, int setpoint, DriveConstants consts) {
     this.m_drive = m_drive;
     this.motor = m_drive.getLeftEncoder();
     this.setpoint = setpoint;
     addRequirements(m_drive);
-    pid = new PIDController(kP, kI, kD);
+    pid = new PIDController(consts.kP, consts.kI, consts.kD);
     pid.setTolerance(10, 5);
     // TODO 4.2: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
