@@ -14,4 +14,7 @@ public class DriveConstants {
   public final double kP = 0.0001;
   public final double kI = 0.000001;
   public final double kD = 0.0;
+
+  public final int kPTolerance = 10;
+  public final int kVTolerance = 5;
 }

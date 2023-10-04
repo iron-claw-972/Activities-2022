@@ -26,7 +26,7 @@ public class PIDCommand extends CommandBase {
     this.setpoint = setpoint;
     addRequirements(m_drive);
     pid = new PIDController(consts.kP, consts.kI, consts.kD);
-    pid.setTolerance(10, 5);
+    pid.setTolerance(consts.kPTolerance, consts.kVTolerance);
     // TODO 4.2: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
 
