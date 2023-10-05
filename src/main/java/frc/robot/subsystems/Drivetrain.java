@@ -84,8 +84,8 @@ public class Drivetrain extends SubsystemBase {
     // TODO 2.1: write an arcade drive here
     throttle = MathUtil.clamp(throttle, -1, 1);
     turn = MathUtil.clamp(turn, -1, 1);
-    leftMotors.set((throttle + turn) * 0.5);
-    rightMotors.set((throttle - turn) * 0.5);
+    leftMotors.set((throttle + turn) * 0.2);
+    rightMotors.set((throttle - turn) * -0.2);
   }
 
   public WPI_TalonFX getLeftEncoder() {

@@ -4,6 +4,7 @@ import frc.robot.commands.DoNothing;
 import frc.robot.commands.DriveOneMeter;
 import frc.robot.commands.PIDCommand;
 import frc.robot.commands.SpinAround;
+import frc.robot.commands.TestMeter;
 import frc.robot.commands.Turn180;
 import frc.robot.constants.Constants;
 import frc.robot.subsystems.Drivetrain;
@@ -22,6 +23,7 @@ public class Driver {
     driver.get(Button.B).onTrue(new Turn180(m_drive, Constants.drive));
     driver.get(Button.X).onTrue(new DriveOneMeter(m_drive, Constants.drive));
     driver.get(Button.Y).onTrue(new SpinAround(m_drive));
+    // driver.get(Button.A).onTrue(new TestMeter(m_drive));
   }
 
   public static double getRawThrottleValue() {
