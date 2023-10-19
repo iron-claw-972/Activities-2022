@@ -4,14 +4,20 @@
 
 package frc.robot;
 
+import java.text.RuleBasedCollator;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.ScheduleCommand;
+import frc.robot.commands.BangBang;
+import frc.robot.commands.RunUntilCondition;
 import frc.robot.controls.Driver;
 import frc.robot.controls.Operator;
 import frc.robot.subsystems.Drivetrain;
+
 import frc.robot.util.ShuffleboardManager;
 
 /**
@@ -41,15 +47,36 @@ public class Robot extends TimedRobot {
     Driver.configureControls();
     Operator.configureControls();
 
+
+
+    
+    drive.gogogo();
+
+    
     // TODO 2.1: replace the "new RunCommand" tank drive command with the arcade drive command you have written
     drive.setDefaultCommand(
-      new RunCommand(() -> drive.tankDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
+      new RunCommand(() -> drive.gogogo(), drive)
+      // new RunCommand(() -> drive.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue()), drive)
+      // new RunCommand(() -> drive.tankDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
     );
     // TODO 2.2: schadule your new command
-    // TODO 2.4: replace the command from 2.2 with your new command
-    
-    // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
 
+    // drive.setDefaultCommand(new RunUntilCondition(drive));
+    // CommandScheduler.getInstance().schedule(new RunUntilCondition(drive));
+    // RunUntilCondition customCmd = new RunUntilCondition(drive);
+    // customCmd.schedule();
+    
+    // TODO 2.4: replace the command from 2.2 with your new command
+    // drive.setDefaultCommand(new BangBang(drive));
+    
+    
+    // drive.setDefaultCommand(
+      
+    //   new RunCommand(() -> drive.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue()), drive)
+    //   // new RunCommand(() -> drive.tankDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
+    // );
+    // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
+    
   }
 
   /**
@@ -107,6 +134,7 @@ public class Robot extends TimedRobot {
     if (m_autoCommand != null) {
       m_autoCommand.cancel();
     }
+
   }
 
   /**
