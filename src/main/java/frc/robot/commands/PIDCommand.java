@@ -3,6 +3,7 @@ package frc.robot.commands;
 import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.util.ShuffleboardManager;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -16,17 +17,16 @@ public class PIDCommand extends CommandBase {
   // ExampleSubsystem m_subsystem;
   Drivetrain m_drive;
   int setpoint;
-  PIDController pid;
+  public PIDController pid = new PIDController(DriveConstants.kP, DriveConstants.kI, DriveConstants.kD);
   WPI_TalonFX motor;
 
   // TODO 4.2: Add a parameter that asks for the setpoint
-  public PIDCommand(Drivetrain m_drive, int setpoint, DriveConstants consts) {
+  public PIDCommand(Drivetrain m_drive, int setpoint) {
     this.m_drive = m_drive;
     this.motor = m_drive.getLeftEncoder();
     this.setpoint = setpoint;
     addRequirements(m_drive);
-    pid = new PIDController(consts.kP, consts.kI, consts.kD);
-    pid.setTolerance(consts.kPTolerance, consts.kVTolerance);
+    pid.setTolerance(DriveConstants.kPTolerance, DriveConstants.kVTolerance);
     // TODO 4.2: replace above ExampleSubsystem with your created ExtraSubsystem, or with Drivetrain.
   }
 
@@ -34,6 +34,7 @@ public class PIDCommand extends CommandBase {
     // TODO 4.2: zero encoders, reset the PID controller, and enable it before starting
     motor.setSelectedSensorPosition(0);
     System.out.println("Running PIDCommand");
+    ShuffleboardManager.m_mainTab.add(pid);
   }
 
   public void execute() {
@@ -52,6 +53,6 @@ public class PIDCommand extends CommandBase {
 
   public boolean isFinished() {
     // TODO 4.2: check if the PID is finished though the PID controler
-    return pid.atSetpoint();
+    return pid.atSetpoint();  
   }
 }

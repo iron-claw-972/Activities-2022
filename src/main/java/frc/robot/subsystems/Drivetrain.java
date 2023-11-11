@@ -12,10 +12,14 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import ctre_shims.PhoenixMotorControllerGroup;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj2.command.PIDCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
+import frc.robot.constants.DriveConstants;
 import frc.robot.util.MotorFactory;
 
 
@@ -36,10 +40,16 @@ public class Drivetrain extends SubsystemBase {
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
 
+  PIDController pid = new PIDController(DriveConstants.kP, DriveConstants.kI, DriveConstants.kD);
+
   /**
    * Creates a new DriveSubsystem.
    */
   public Drivetrain() {
+
+    leftMotor1.setNeutralMode(NeutralMode.Brake);
+    rightMotor1.setNeutralMode(NeutralMode.Brake);
+
     // TODO 1.1: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones, if you have them.
     // You can also invert the motors, you often need to invert one side to make the robot drive since the motors on one side are flipped.
     // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors!

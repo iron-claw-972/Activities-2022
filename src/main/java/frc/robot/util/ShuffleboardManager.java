@@ -7,13 +7,14 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.PIDCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 
 public class ShuffleboardManager {
 
   SendableChooser<Command> m_autoCommand = new SendableChooser<>();
 
-  ShuffleboardTab m_mainTab = Shuffleboard.getTab("Main");
+  public static ShuffleboardTab m_mainTab = Shuffleboard.getTab("Main");
   ShuffleboardTab m_autoTab = Shuffleboard.getTab("Auto");
 
   // NetworkTableEntry m_commandScheduler = m_mainTab.add("Command Scheduler", "NULL").getEntry();
