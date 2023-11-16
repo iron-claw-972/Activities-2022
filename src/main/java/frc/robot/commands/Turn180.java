@@ -26,8 +26,8 @@ public class Turn180 extends CommandBase {
         leftMotor = m_drive.getLeftEncoder();
         rightMotor = m_drive.getLeftEncoder();
         addRequirements(m_drive);
-        leftPID = new PIDController(consts.kP, consts.kI, consts.kD);
-        rightPID = new PIDController(consts.kP, consts.kI, consts.kD);
+        leftPID = new PIDController(consts.kPLinear, consts.kILinear, consts.kDLinear);
+        rightPID = new PIDController(consts.kPLinear, consts.kILinear, consts.kDLinear);
         leftPID.setTolerance(consts.kPTolerance, consts.kVTolerance);
         rightPID.setTolerance(consts.kPTolerance, consts.kVTolerance);
     }

@@ -17,7 +17,7 @@ public class PIDCommand extends CommandBase {
   // ExampleSubsystem m_subsystem;
   Drivetrain m_drive;
   int setpoint;
-  public PIDController pid = new PIDController(DriveConstants.kP, DriveConstants.kI, DriveConstants.kD);
+  public PIDController pid = new PIDController(DriveConstants.kPLinear, DriveConstants.kILinear, DriveConstants.kDLinear);
   WPI_TalonFX motor;
 
   // TODO 4.2: Add a parameter that asks for the setpoint

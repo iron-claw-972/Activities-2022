@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import frc.robot.commands.DriveOneMeter;
+import frc.robot.subsystems.Drivetrain;
 
 public class ShuffleboardManager {
 
@@ -25,6 +27,9 @@ public class ShuffleboardManager {
     chooserUpdate();
 
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
+    m_mainTab.add("Linear PID", Drivetrain.getPidLinear());
+    m_mainTab.add("Rotational PID", Drivetrain.getPidRot()));
+  
     m_autoTab.add("Auto Chooser", m_autoCommand);
   }
 

@@ -11,9 +11,13 @@ public class DriveConstants {
 
   // TODO 4.1: Add three constants for P, I, and D values. A good starting point is zero for I and D, and a very small value for P
   // If you are using your own subsystem then do not make the constants here, make them in a new constants file! Then, go to constants.java and make a public static final instance of your constants file
-  public static final double kP = 0.001;
-  public static final double kI = 0.0;
-  public static final double kD = 0.0;
+  public static final double kPLinear = 0.001;
+  public static final double kILinear = 0.0;
+  public static final double kDLinear = 0.0;
+
+  public static final double kPRot = 0.001;
+  public static final double kIRot = 0.0;
+  public static final double kDRot = 0.0;
 
   public static final int kPTolerance = 10;
   public static final int kVTolerance = 5;
