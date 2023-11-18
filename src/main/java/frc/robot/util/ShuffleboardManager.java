@@ -7,7 +7,9 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.PIDCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import frc.robot.Robot;
 
 public class ShuffleboardManager {
 
@@ -25,6 +27,7 @@ public class ShuffleboardManager {
 
     // TODO 4.3: Add the PID you made to shuffle board (you can do this in the Subsystem or ShuffleBoardManager class)
     m_autoTab.add("Auto Chooser", m_autoCommand);
+    m_autoTab.add("drivetrain PID", Robot.drive.pid);
   }
 
   public Command getAutonomousCommand() {
@@ -34,6 +37,7 @@ public class ShuffleboardManager {
   public void chooserUpdate() {
     m_autoCommand.addOption("Do Nothing", new PrintCommand("This will do nothing!"));
     // TODO 4.3: add your autonomous command to the auto command chooser
+    m_autoCommand.addOption("pidcommand", new  frc.robot.commands.PIDCommand(Robot.drive,3000.0));
   }
 
   public void loadCommandSchedulerShuffleboard(){

@@ -17,6 +17,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
 import frc.robot.util.MotorFactory;
+import frc.robot.util.ShuffleboardManager;
 
 import com.revrobotics.CANSparkMax;
 import java.lang.System;
@@ -33,7 +34,7 @@ public class Drivetrain extends SubsystemBase {
   // MotorFactory.createSparkMAX(11, MotorType.kBrushless);
   
   
- 
+  
 
 
   public WPI_TalonFX leftMotor1 = new WPI_TalonFX(Constants.drive.kLeftMotor);
@@ -47,22 +48,22 @@ public class Drivetrain extends SubsystemBase {
   PhoenixMotorControllerGroup rightMotors = new PhoenixMotorControllerGroup(rightMotor1);
 
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
-  PIDController pid = new PIDController(Constants.drive.pidp, Constants.drive.pidi, Constants.drive.pidd);
+  public PIDController pid = new PIDController(Constants.drive.pidp, Constants.drive.pidi, Constants.drive.pidd);
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
   double setpoint = 0;  
+  boolean on_pid = false;
   // leftMotor1.set(m_pid.calculate(m_encoder.getDistance(), setpoint));
 
   /**
    * Creates a new DriveSubsystem.
    */
   public Drivetrain() {
-    System.out.println("can sparkmax instantiated");
     // TODO 1.1: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones, if you have them.
     // You can also invert the motors, you often need to invert one side to make the robot drive since the motors on one side are flipped.
     // Examples for how are below, replace the variable motor with your motor variable and make sure you set the right motors!
     // motor.setInverted(true);
     // motor.follow(mainMotor);
-
+    on_pid = true;
     leftMotors.setInverted(true);
     // TODO 1.2: Change all of the setup above. Motors in a group automatically follow each other so do not set them as followers. You can set them inverted as such:
     // leftMotors.setInverted(true);
@@ -75,6 +76,8 @@ public class Drivetrain extends SubsystemBase {
   public void periodic() {
     // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors. 
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function. Otherwise, it should set the motor power to zero.
+    double speed = pid.calculate(leftMotor1.getSelectedSensorPosition(), setpoint);
+    leftMotor1.set(speed);rightMotor1.set(speed);
     // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders, and the setpoint is a variable declared above.
   }
 
@@ -114,4 +117,14 @@ public class Drivetrain extends SubsystemBase {
   System.out.println(neomotor.get());
   }
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
+  public void setPoint(double sp) {
+    setpoint = sp;
+  }
+  public void setpid(boolean b) {
+
+    on_pid = b;
+  }
+  public void resetpid() {
+    pid.reset();
+  }
 }

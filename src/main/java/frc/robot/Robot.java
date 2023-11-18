@@ -44,25 +44,27 @@ public class Robot extends TimedRobot {
 
     shuffleboard.setup();
 
+    // add drive to driver so that it can run commands based on button inputs
+    Driver.drive = drive;
     Driver.configureControls();
     Operator.configureControls();
 
 
 
     
-    drive.gogogo();
+    // drive.gogogo();
 
     
     // TODO 2.1: replace the "new RunCommand" tank drive command with the arcade drive command you have written
     drive.setDefaultCommand(
-      new RunCommand(() -> drive.gogogo(), drive)
-      // new RunCommand(() -> drive.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue()), drive)
+      //new RunCommand(() -> drive.gogogo(), drive)
+      new RunCommand(() -> drive.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue()), drive)
       // new RunCommand(() -> drive.tankDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
     );
     // TODO 2.2: schadule your new command
 
-    // drive.setDefaultCommand(new RunUntilCondition(drive));
-    // CommandScheduler.getInstance().schedule(new RunUntilCondition(drive));
+     //drive.setDefaultCommand(new RunUntilCondition(drive));
+    //CommandScheduler.getInstance().schedule(new RunUntilCondition(drive));
     // RunUntilCondition customCmd = new RunUntilCondition(drive);
     // customCmd.schedule();
     
@@ -70,11 +72,11 @@ public class Robot extends TimedRobot {
     // drive.setDefaultCommand(new BangBang(drive));
     
     
-    // drive.setDefaultCommand(
+    drive.setDefaultCommand(
       
-    //   new RunCommand(() -> drive.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue()), drive)
+      new RunCommand(() -> drive.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue()), drive)
     //   // new RunCommand(() -> drive.tankDrive(Driver.getRawLeft(), Driver.getRawRight()), drive)
-    // );
+    );
     // TODO 3.2: Replace the above function with a RunCommand which has a lambda to the arcadeDrive function in drivetrain
     
   }
@@ -131,6 +133,9 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    // TODO 2.2 put command HERE instead lmao
+    //CommandScheduler.getInstance().schedule(new RunUntilCondition(drive));
+    CommandScheduler.getInstance().schedule(new BangBang(drive));
     if (m_autoCommand != null) {
       m_autoCommand.cancel();
     }

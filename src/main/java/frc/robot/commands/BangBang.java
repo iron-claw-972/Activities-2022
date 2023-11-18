@@ -36,13 +36,13 @@ public class BangBang extends CommandBase {
 
   public void execute() {
     // TODO 2.4: Make the BangBang control loop with encoders inputs. This should be a basic if statement: if below, spin forward, if above, spin backward
-    if (m_drive.leftMotor1.getSelectedSensorPosition() < 15000) {
+    if (m_drive.leftMotor1.getSelectedSensorPosition() < 30000) {
       m_drive.leftMotor1.set(.2);
       m_drive.rightMotor1.set(.2);
     }
     else {
-      m_drive.leftMotor1.set(.2);
-      m_drive.rightMotor1.set(.2);
+      m_drive.leftMotor1.set(-.2);
+      m_drive.rightMotor1.set(-.2);
     }
     System.out.println(m_drive.leftMotor1.getSelectedSensorPosition());
   }
@@ -56,6 +56,6 @@ public class BangBang extends CommandBase {
 
   public boolean isFinished() {
     // TODO 2.4: decide when it's finished. Check if it's reached the setpoint, or is within a certain range of the setpoint
-    return (this.abs(m_drive.leftMotor1.getSelectedSensorPosition()-15000) <= epsilon);
+    return (abs(m_drive.leftMotor1.getSelectedSensorPosition()-30000) <= epsilon);
   }
 }
