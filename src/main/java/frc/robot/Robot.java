@@ -45,7 +45,6 @@ public class Robot extends TimedRobot {
     shuffleboard.setup();
 
     // add drive to driver so that it can run commands based on button inputs
-    Driver.drive = drive;
     Driver.configureControls();
     Operator.configureControls();
 
