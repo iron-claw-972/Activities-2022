@@ -33,7 +33,7 @@ public class AutoDrive extends CommandBase {
   }
 
   public boolean isFinished() {
-    // TODO 2.2 return if the comand should stop. This is where you will check your condition for if the command is finished.
+    // TODO 2.2 return if the command should stop. This is where you will check your condition for if the command is finished.
     return System.currentTimeMillis() >= this.endAt;
   }
 }

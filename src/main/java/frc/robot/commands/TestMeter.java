@@ -1,14 +1,8 @@
 package frc.robot.commands;
 
-import frc.robot.constants.DriveConstants;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.ExampleSubsystem;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-
-import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Drivetrain;
 
 public class TestMeter extends CommandBase {
 
@@ -39,7 +33,7 @@ public class TestMeter extends CommandBase {
   }
 
   public boolean isFinished() {
-    // TODO 4.2: check if the PID is finished though the PID controler
+    // TODO 4.2: check if the PID is finished though the PID controller
     return false;
   }
 }

@@ -13,7 +13,7 @@ import lib.controllers.GameController.Axis;
 import lib.controllers.GameController.Button;
 
 public class Driver {
-  private static GameController driver = new GameController(Constants.oi.kDriverJoy);
+  private static final GameController driver = new GameController(Constants.oi.kDriverJoy);
 
   public static void configureControls(Drivetrain m_drive) {
     // TODO 3.1: Change the DoNothing() command to one of your commands

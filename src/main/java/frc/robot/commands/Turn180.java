@@ -8,7 +8,7 @@ import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.Drivetrain;
 
 // ~10,240 ticks req
-// need to account for gearing (mult by 8)
+// need to account for gearing (multiply by 8)
 // so it's ~81,920 ticks
 
 public class Turn180 extends CommandBase {
@@ -26,10 +26,10 @@ public class Turn180 extends CommandBase {
         leftMotor = m_drive.getLeftEncoder();
         rightMotor = m_drive.getLeftEncoder();
         addRequirements(m_drive);
-        leftPID = new PIDController(consts.kPLinear, consts.kILinear, consts.kDLinear);
-        rightPID = new PIDController(consts.kPLinear, consts.kILinear, consts.kDLinear);
-        leftPID.setTolerance(consts.kPTolerance, consts.kVTolerance);
-        rightPID.setTolerance(consts.kPTolerance, consts.kVTolerance);
+        leftPID = new PIDController(DriveConstants.kPLinear, DriveConstants.kILinear, DriveConstants.kDLinear);
+        rightPID = new PIDController(DriveConstants.kPLinear, DriveConstants.kILinear, DriveConstants.kDLinear);
+        leftPID.setTolerance(DriveConstants.kPTolerance, DriveConstants.kVTolerance);
+        rightPID.setTolerance(DriveConstants.kPTolerance, DriveConstants.kVTolerance);
     }
 
     public void initialize() {

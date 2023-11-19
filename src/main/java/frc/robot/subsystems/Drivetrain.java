@@ -7,43 +7,37 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-
-import ctre_shims.PhoenixMotorControllerGroup;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import ctre_shims.PhoenixMotorControllerGroup;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj2.command.PIDCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.constants.Constants;
 import frc.robot.constants.DriveConstants;
 import frc.robot.controls.Driver;
-import frc.robot.util.MotorFactory;
+import frc.robot.util.ShuffleboardManager;
 
 
 public class Drivetrain extends SubsystemBase {
 
   // TODO 1.1: Create Motor Objects using MotorFactory.createTalonFX(int id)
   // the ID should be set in the DriveConstants.java file, here you can access it like Constants.drive.kRightMotor
-  WPI_TalonFX leftMotor1 = new WPI_TalonFX(Constants.drive.kRightMotor);
-  WPI_TalonFX rightMotor1 = new WPI_TalonFX(Constants.drive.kLeftMotor);
+  final WPI_TalonFX leftMotor1 = new WPI_TalonFX(DriveConstants.kRightMotor);
+  final WPI_TalonFX rightMotor1 = new WPI_TalonFX(DriveConstants.kLeftMotor);
   // TODO 1.1 if you don't have a second motor skip the second motors
-//  WPI_TalonFX leftMotor2;
-//  WPI_TalonFX rightMotor2;
+  // WPI_TalonFX leftMotor2;
+  // WPI_TalonFX rightMotor2;
 
   // TODO 1.2: Add two instances of PhoenixMotorControllerGroup(leadMotor, motor2), one for each side. (if you don't have a second motor just make it with with one motor, you wouldn't actually do this but you should still learn about motor controller groups)
-  PhoenixMotorControllerGroup leftMotors = new PhoenixMotorControllerGroup(leftMotor1);
-  PhoenixMotorControllerGroup rightMotors = new PhoenixMotorControllerGroup(rightMotor1);
+  final PhoenixMotorControllerGroup leftMotors = new PhoenixMotorControllerGroup(leftMotor1);
+  final PhoenixMotorControllerGroup rightMotors = new PhoenixMotorControllerGroup(rightMotor1);
 
   // TODO 4.1: Initialize the PIDController here, including three doubles for the P, I, and D values. You should get these from DriveConstants.
   // TODO 4.1: Also add a double for the setpoint, and a boolean for if the PID is enabled.
 
-  private static PIDController pidLinear = new PIDController(DriveConstants.kPLinear, DriveConstants.kILinear, DriveConstants.kDLinear);
-  private static PIDController pidRot = new PIDController(DriveConstants.kPRot, DriveConstants.kIRot, DriveConstants.kDRot);
-  private static boolean pidEnabled = false;
+  private final PIDController pidLinear = new PIDController(DriveConstants.kPLinear, DriveConstants.kILinear, DriveConstants.kDLinear);
+  private final PIDController pidRot = new PIDController(DriveConstants.kPRot, DriveConstants.kIRot, DriveConstants.kDRot);
+  private boolean pidEnabled = false;
 
   /**
    * Creates a new DriveSubsystem.
@@ -52,6 +46,9 @@ public class Drivetrain extends SubsystemBase {
 
     leftMotor1.setNeutralMode(NeutralMode.Brake);
     rightMotor1.setNeutralMode(NeutralMode.Brake);
+
+    ShuffleboardManager.m_mainTab.add(pidLinear);
+    ShuffleboardManager.m_mainTab.add(pidRot);
 
     // TODO 1.1: This constructor runs when the subsystem is created so you can do some setup here. Make the secondary motors follow the main ones, if you have them.
     // You can also invert the motors, you often need to invert one side to make the robot drive since the motors on one side are flipped.
@@ -64,7 +61,7 @@ public class Drivetrain extends SubsystemBase {
     // TODO 1.2: Change all of the setup above. Motors in a group automatically follow each other so do not set them as followers. You can set them inverted as such:
     // leftMotors.setInverted(true);
 
-    
+
     // TODO 4.3: Make sure your PID object is public, or make a function that returns the object, so you can get it in ShuffleBoardManager
   }
 
@@ -73,10 +70,10 @@ public class Drivetrain extends SubsystemBase {
     // TODO 4.1: Periodic runs periodically, so we will update the PID here and set the motors. 
     // If the pid is enabled (a boolean value declared above) then you should set the motors using the pid's calculate() function. Otherwise, it should set the motor power to zero.
     // pid.calculate() takes two values: calculate(processVariable, setpoint). get the process var by getting the encoders, and the setpoint is a variable declared above.
-    if (this.pidEnabled) {
+    if (pidEnabled) {
       this.stepPid();
     } else {
-      this.arcadeDrive(Driver.getRawLeft(), Driver.getRawRight());
+      this.arcadeDrive(Driver.getRawThrottleValue(), Driver.getRawTurnValue());
     }
   }
 
@@ -100,10 +97,10 @@ public class Drivetrain extends SubsystemBase {
    */
   public void arcadeDrive(double throttle, double turn) {
     // TODO 2.1: write an arcade drive here
-    throttle = MathUtil.clamp(throttle, -1, 1);
-    turn = MathUtil.clamp(turn, -1, 1);
-    leftMotors.set((throttle + turn) * 0.2);
-    rightMotors.set((throttle - turn) * -0.2);
+    double clampedThrottle = MathUtil.clamp(throttle, -1, 1);
+    double clampedTurn = MathUtil.clamp(turn, -1, 1);
+    leftMotors.set((clampedThrottle + clampedTurn) * 0.2);
+    rightMotors.set((clampedThrottle - clampedTurn) * -0.2);
   }
 
   public WPI_TalonFX getLeftEncoder() {
@@ -115,16 +112,12 @@ public class Drivetrain extends SubsystemBase {
   }
   // TODO 4.1: write three functions, one for setting the setpoint, and one for setting whether the pid is enabled. The last one is a function to reset the PID with pid.reset()
 
-  public static PIDController getPidLinear() {
-    return Drivetrain.pidLinear;
+  public PIDController getPidLinear() {
+    return this.pidLinear;
   }
 
-  public static PIDController getPidRot() {
-    return Drivetrain.pidRot;
-  }
-
-  public void setPidState(boolean state) {
-    Drivetrain.pidEnabled = state;
+  public PIDController getPidRot() {
+    return this.pidRot;
   }
 
   private void stepPid() {
@@ -134,9 +127,23 @@ public class Drivetrain extends SubsystemBase {
     this.arcadeDrive(pidLinear.calculate(meanEncodePos), pidRot.calculate(inferredTurn));
   }
 
+  public void sendLinearPidTo(int rotations) {
+    this.pidLinear.setSetpoint(rotations * 2048);
+    this.pidEnabled = true;
+  }
+
+  public void sendRotPidTo(int degrees) {
+    this.pidRot.setSetpoint(degrees);
+    this.pidEnabled = true;
+  }
+
+  public void releasePids() {
+    this.pidEnabled = false;
+  }
+
   public void pidReset() {
-    Drivetrain.pidLinear.reset();
-    Drivetrain.pidRot.reset();
+    this.pidLinear.reset();
+    this.pidRot.reset();
   }
 
 }

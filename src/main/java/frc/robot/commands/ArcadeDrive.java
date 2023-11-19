@@ -14,7 +14,7 @@ public class ArcadeDrive extends CommandBase {
    */
   public ArcadeDrive(Drivetrain drive) {
 
-    // store the drivetrain in the m_drive variable to be accessed elsewhere
+    // store the drivetrain in the drive variable to be accessed elsewhere
     m_drive = drive;
 
     // add the drivetrain as a requirement so the scheduler 

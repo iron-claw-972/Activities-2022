@@ -20,10 +20,10 @@ public class DriveOneMeter extends CommandBase {
         leftMotor = m_drive.getLeftEncoder();
         rightMotor = m_drive.getLeftEncoder();
         addRequirements(m_drive);
-        leftPID = new PIDController(consts.kPLinear, consts.kILinear, consts.kDLinear);
-        rightPID = new PIDController(consts.kPLinear, consts.kILinear, consts.kDLinear);
-        leftPID.setTolerance(consts.kPTolerance, consts.kVTolerance);
-        rightPID.setTolerance(consts.kPTolerance, consts.kVTolerance);
+        leftPID = new PIDController(DriveConstants.kPLinear, DriveConstants.kILinear, DriveConstants.kDLinear);
+        rightPID = new PIDController(DriveConstants.kPLinear, DriveConstants.kILinear, DriveConstants.kDLinear);
+        leftPID.setTolerance(DriveConstants.kPTolerance, DriveConstants.kVTolerance);
+        rightPID.setTolerance(DriveConstants.kPTolerance, DriveConstants.kVTolerance);
     }
 
     public void initialize() {

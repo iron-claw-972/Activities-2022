@@ -50,9 +50,6 @@ public class BangBang extends CommandBase {
   public boolean isFinished() {
     System.out.println(leftMotor.getSelectedSensorPosition());
     // TODO 2.4: decide when it's finished. Check if it's reached the setpoint, or is within a certain range of the setpoint
-    if (java.lang.Math.abs(leftMotor.getSelectedSensorPosition() - setpoint) < 5)
-      return true;
-    else
-      return false;
+      return Math.abs(leftMotor.getSelectedSensorPosition() - setpoint) < 5;
   }
 }
