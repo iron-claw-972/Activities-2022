@@ -1,0 +1,22 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/Shuffleboard/Auto/Auto Chooser": "String Chooser",
+      "/Shuffleboard/Main/PIDController[1]": "PIDController",
+      "/Shuffleboard/Main/PIDController[2]": "PIDController"
+    },
+    "windows": {
+      "/Shuffleboard/Main/PIDController[1]": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/Shuffleboard/Main/PIDController[2]": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  }
+}
